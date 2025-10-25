@@ -2,20 +2,60 @@
 <html lang="en" data-bs-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lukas Regniet — Interactive CV</title>
-  <meta name="description" content="Interactive CV landing page for Lukas Regniet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert</title>
+  <meta name="description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation, surgeon education, and cross-functional team leadership at Medartis AG." />
+  <meta name="keywords" content="Digital Marketing, MedTech, Healthcare Innovation, Strategic Leadership, Surgeon Education, Digital Transformation, Marketing Analytics, Product Launch Strategy" />
+  <meta name="author" content="Lukas Regniet" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://lukasregniet.com" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lukasregniet.com" />
+  <meta property="og:title" content="Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert" />
+  <meta property="og:description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation and surgeon education." />
+  <meta property="og:image" content="https://lukasregniet.com/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://lukasregniet.com" />
+  <meta property="twitter:title" content="Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert" />
+  <meta property="twitter:description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation and surgeon education." />
+  <meta property="twitter:image" content="https://lukasregniet.com/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#667eea" />
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://player.vimeo.com" />
+
+  <!-- Vendor CSS via CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Your custom styles -->
   <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#nav" data-bs-smooth-scroll="true" tabindex="0">
-  <nav class="navbar navbar-expand-lg fixed-top" id="nav" aria-label="Primary">
+  <!-- Enhanced Navbar -->
+  <nav class="navbar navbar-expand-lg" id="nav" aria-label="Primary">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="#">Lukas Regniet</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand fw-semibold" href="#" aria-label="Lukas Regniet Home">Lukas Regniet</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -30,105 +70,527 @@
     </div>
   </nav>
 
+  <!-- Floating Mini Navigation -->
+  <nav class="floating-nav" id="floatingNav" aria-label="Quick Navigation">
+    <div class="floating-nav-container">
+      <button class="floating-nav-toggle" id="floatingNavToggle" aria-label="Toggle Quick Navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="floating-nav-menu" id="floatingNavMenu">
+        <a href="#about" class="floating-nav-item" data-tooltip="About">
+          <i class="bi bi-person"></i>
+        </a>
+        <a href="#experience" class="floating-nav-item" data-tooltip="Experience">
+          <i class="bi bi-briefcase"></i>
+        </a>
+        <a href="#projects" class="floating-nav-item" data-tooltip="Projects">
+          <i class="bi bi-kanban"></i>
+        </a>
+        <a href="#contact" class="floating-nav-item" data-tooltip="Contact">
+          <i class="bi bi-envelope"></i>
+        </a>
+        <button class="floating-nav-item theme-toggle-float" id="themeToggleFloat" data-tooltip="Toggle Theme">
+          <i class="bi bi-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
   <header class="hero">
     <div class="container">
       <div class="row g-4 align-items-center">
+
+        <!-- Text / CTA -->
         <div class="col-lg-7">
           <div class="hero-card reveal">
-            <h1 class="display-5 fw-bold">Where Strategy, Creativity, and Execution Drive Healthcare Innovation.</h1>
-            <p class="lead muted" id="aboutLead">Digital marketing leader with 11+ years in MedTech — empowering healthcare professionals through strategy and innovation.</p>
+            <h1 class="display-4 fw-bold mb-4">
+              <span class="gradient-text">Where Strategy, Creativity, and Execution</span><br>
+              Drive Healthcare Innovation.
+            </h1>
+
+            <p class="lead muted mb-4">
+              Digital marketing leader with <strong>11+ years in MedTech</strong> — empowering healthcare professionals through
+              strategic innovation, digital transformation, and surgeon education at the highest level.
+            </p>
+
             <div class="d-flex flex-wrap gap-2 mt-3">
-              <a id="downloadPdf" class="btn btn-outline-dark btn-lg" role="button" href="Lukas%20Regniet%20CV%202025%20Digital%20Transformation.pdf" download><i class="bi bi-file-earmark-pdf"></i> Download CV (PDF)</a>
-              <a href="#experience" class="btn btn-accent btn-lg" role="button"><i class="bi bi-arrow-down-circle"></i> Explore My Work</a>
+              <!-- PDF Download -->
+              <a id="downloadPdf"
+                 class="btn btn-outline-dark btn-lg"
+                 role="button"
+                 href="Lukas Regniet CV 2025 Digital Transformation.pdf"
+                 download>
+                <i class="bi bi-file-earmark-pdf"></i>
+                Download CV (PDF)
+              </a>
+
+              <a href="#experience"
+                 class="btn btn-accent btn-lg"
+                 role="button">
+                <i class="bi bi-arrow-down-circle"></i>
+                Explore My Work
+              </a>
             </div>
           </div>
         </div>
+
+        <!-- Video / Visual -->
         <div class="col-lg-5 text-center position-relative" style="min-height:320px">
           <div class="ratio ratio-9x16 d-none d-lg-block" style="max-height:520px">
-            <iframe id="heroVimeo" src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="border-radius:1rem; border:1px solid rgba(148,163,184,.18);"></iframe>
+            <!-- Vimeo embed: autoplay muted, we soft-loop 5s segment via app.js -->
+            <iframe
+              id="heroVimeo"
+              src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              style="border-radius:1rem; border:1px solid rgba(148,163,184,.18);">
+            </iframe>
           </div>
+
+          <!-- glow line under video -->
           <div class="glow-line mt-3" aria-hidden="true"></div>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Main content -->
   <main class="container pb-5">
     <div class="row g-4">
+
+      <!-- Left column -->
       <div class="col-lg-8">
+
+        <!-- About -->
         <section id="about" class="py-4 reveal">
-          <div class="section-title"><i class="bi bi-person-lines-fill" aria-hidden="true"></i><h2 class="h4 m-0">About</h2></div>
-          <div id="aboutText" class="fs-5"></div>
+          <div class="section-title">
+            <i class="bi bi-person-lines-fill" aria-hidden="true"></i>
+            <h2 class="h4 m-0">About</h2>
+          </div>
+          <p class="fs-5">
+            Strategic marketing leader passionate about advancing patient outcomes through innovation,
+            digital transformation, and surgeon education in MedTech.
+          </p>
+          <p class="fs-6 muted">
+            I lead cross-functional global teams, build digital ecosystems for surgeons and sales teams,
+            and translate complex clinical value into clear commercial impact.
+          </p>
         </section>
 
+        <!-- Experience -->
         <section id="experience" class="py-4 reveal">
-          <div class="section-title"><i class="bi bi-briefcase" aria-hidden="true"></i><h2 class="h4 m-0">Professional Experience</h2></div>
+          <div class="section-title">
+            <i class="bi bi-briefcase" aria-hidden="true"></i>
+            <h2 class="h4 m-0">Professional Experience</h2>
+          </div>
           <p class="muted">A journey through strategy, digital transformation, and leadership.</p>
-          <div class="timeline" id="experienceTimeline"></div>
-        </section>
 
-        <section id="projects" class="py-4 reveal">
-          <div class="section-title"><i class="bi bi-kanban" aria-hidden="true"></i><h2 class="h4 m-0">Key Projects</h2></div>
-          <div id="projectsCarousel" class="carousel slide" data-bs-ride="false" aria-label="Project Highlights">
-            <div class="carousel-inner" id="projectsInner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev" aria-label="Previous"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button>
-            <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next" aria-label="Next"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>
+          <div class="timeline">
+            <!-- Job 1 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medartis AG — Head of Global Marketing Services & Digital Solutions
+                  <span class="muted">(2023–Present)</span>
+                </h5>
+                <p class="mb-0 muted">Basel, Switzerland · Full-time</p>
+              </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medartis AG — Group Manager Digital Marketing and Analytics
+                  <span class="muted">(2021–2023)</span>
+                </h5>
+                <p class="mb-0 muted">Basel, Switzerland · Full-time</p>
+              </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medartis AG — Field Marketing Manager Lower Extremity
+                  <span class="muted">(2020–2021)</span>
+                </h5>
+                <p class="mb-0 muted">Basel, Switzerland · Hybrid</p>
+              </div>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medartis AG — International Education Manager Foot &amp; Ankle
+                  <span class="muted">(2017–2020)</span>
+                </h5>
+                <p class="mb-0 muted">Basel, Switzerland</p>
+              </div>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medartis AG — Education Manager
+                  <span class="muted">(2014–2017)</span>
+                </h5>
+                <p class="mb-0 muted">Basel, Switzerland</p>
+              </div>
+            </div>
+
+            <!-- Job 6 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medisana AG — Key Account Manager Sport &amp; Health
+                  <span class="muted">(2013–2014)</span>
+                </h5>
+                <p class="mb-0 muted">Germany · Full-time</p>
+              </div>
+            </div>
+
+            <!-- Job 7 -->
+            <div class="t-item mb-4">
+              <div class="t-dot" aria-hidden="true"></div>
+              <div class="card p-4 hover-raise">
+                <h5 class="mb-1">
+                  Medisana AG — Assistant Sales Manager Performance Sport
+                  <span class="muted">(2013)</span>
+                </h5>
+                <p class="mb-0 muted">Germany · Full-time</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="references" class="py-4 reveal">
-          <div class="section-title"><i class="bi bi-quote" aria-hidden="true"></i><h2 class="h4 m-0">References & Recommendations</h2></div>
-          <div class="accordion" id="refAcc"></div>
+        <!-- Projects -->
+        <section id="projects" class="py-4 reveal">
+          <div class="section-title">
+            <i class="bi bi-kanban" aria-hidden="true"></i>
+            <h2 class="h4 m-0">Key Projects</h2>
+          </div>
+
+          <div class="card p-4 hover-raise mb-3">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <h5 class="mb-2">Global Digital Transformation</h5>
+                <p class="mb-0">
+                  Relaunch of Medartis.com, compliant eIFU platform, and the first Medartis ONE app —
+                  unifying surgeon education, content access, and sales enablement across regions.
+                </p>
+              </div>
+              <span class="pill">Highlight</span>
+            </div>
+          </div>
+
+          <div class="card p-4 hover-raise mb-3">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <h5 class="mb-2">Surgeon Education Ecosystem</h5>
+                <p class="mb-0">
+                  30+ surgical technique videos, live surgery content, KOL webinars, and global training
+                  programs to scale expert knowledge worldwide.
+                </p>
+              </div>
+              <span class="pill">Education</span>
+            </div>
+          </div>
+
+          <div class="card p-4 hover-raise">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <h5 class="mb-2">Commercial Enablement / Sales Impact</h5>
+                <p class="mb-0">
+                  Data-driven campaign frameworks and enablement dashboards that supported
+                  double-digit revenue growth in key business lines.
+                </p>
+              </div>
+              <span class="pill">Growth</span>
+            </div>
+          </div>
         </section>
+
+        <!-- References -->
+        <section id="references" class="py-4 reveal">
+          <div class="section-title">
+            <i class="bi bi-quote" aria-hidden="true"></i>
+            <h2 class="h4 m-0">References &amp; Recommendations</h2>
+          </div>
+
+          <div class="card p-4 mb-3">
+            <blockquote class="quote m-0">
+              “A true digital all-rounder with vision and integrity.”
+              <div class="muted small mt-2">
+                — Y. Aister, Web Developer / Global Digital Transformation
+              </div>
+            </blockquote>
+          </div>
+
+          <div class="card p-4 mb-3">
+            <blockquote class="quote m-0">
+              “Combines deep technical and anatomical understanding with a people-first leadership style.”
+              <div class="muted small mt-2">
+                — E. Lorenz, Creative Lead MedTech
+              </div>
+            </blockquote>
+          </div>
+
+          <div class="card p-4">
+            <blockquote class="quote m-0">
+              “High level of commitment, motivation, and positive energy — connects people, process, and product.”
+              <div class="muted small mt-2">
+                — H. Wetzel, Data/CRM
+              </div>
+            </blockquote>
+          </div>
+        </section>
+
       </div>
 
+      <!-- Right column -->
       <div class="col-lg-4">
         <aside class="sticky-side">
+
+          <!-- Skills -->
           <section id="skills" class="py-4 reveal">
-            <div class="section-title"><i class="bi bi-stars" aria-hidden="true"></i><h2 class="h6 m-0">Top skills</h2></div>
-            <div id="skillsTags" class="d-flex flex-wrap"></div>
+            <div class="section-title">
+              <i class="bi bi-stars" aria-hidden="true"></i>
+              <h2 class="h6 m-0">Top skills</h2>
+            </div>
+
+            <div class="d-flex flex-wrap">
+              <span class="tag"><i class="bi bi-check2-circle"></i> Strategic Marketing Leadership</span>
+              <span class="tag"><i class="bi bi-check2-circle"></i> Digital Transformation</span>
+              <span class="tag"><i class="bi bi-check2-circle"></i> Cross-functional Team Leadership</span>
+              <span class="tag"><i class="bi bi-check2-circle"></i> Surgeon Education</span>
+              <span class="tag"><i class="bi bi-check2-circle"></i> Product Launch Strategy</span>
+            </div>
           </section>
 
+          <!-- Leadership -->
           <section id="leadership" class="py-4 reveal">
-            <div class="section-title"><i class="bi bi-people" aria-hidden="true"></i><h2 class="h6 m-0">Leadership</h2></div>
-            <ul class="list-unstyled m-0" id="leadershipList"></ul>
+            <div class="section-title">
+              <i class="bi bi-people" aria-hidden="true"></i>
+              <h2 class="h6 m-0">Leadership</h2>
+            </div>
+
+            <ul class="list-unstyled m-0">
+              <li class="mb-2"><span class="pill">Leading teams of 9+ experts globally</span></li>
+              <li class="mb-2"><span class="pill">Building digital culture & process clarity</span></li>
+              <li class="mb-2"><span class="pill">Partnering with Product, Sales, Medical Affairs</span></li>
+            </ul>
           </section>
 
+          <!-- Education -->
           <section id="education" class="py-4 reveal">
-            <div class="section-title"><i class="bi bi-mortarboard" aria-hidden="true"></i><h2 class="h6 m-0">Education</h2></div>
-            <div class="vstack gap-3" id="educationList"></div>
+            <div class="section-title">
+              <i class="bi bi-mortarboard" aria-hidden="true"></i>
+              <h2 class="h6 m-0">Education</h2>
+            </div>
+
+            <div class="card p-3 mb-3">
+              <div class="fw-semibold">German Sport University Cologne</div>
+              <div class="muted">M.Sc. Sports Technology</div>
+            </div>
+
+            <div class="card p-3">
+              <div class="fw-semibold">German Sport University Cologne</div>
+              <div class="muted">B.A. Sport Outdoor and Education</div>
+            </div>
           </section>
 
-          <section id="contact" class="py-4 reveal">
-            <div class="section-title"><i class="bi bi-envelope" aria-hidden="true"></i><h2 class="h6 m-0">Contact</h2></div>
-            <div class="card p-3">
-              <p class="muted mb-2">Want to collaborate or request the PDF CV?</p>
-              <div class="d-grid gap-2">
-                <a href="#" id="copyShare" class="btn btn-outline-dark" role="button"><i class="bi bi-link-45deg"></i> Copy Shareable URL</a>
-                <a href="#experience" class="btn btn-accent" role="button"><i class="bi bi-briefcase"></i> View Experience</a>
+          <!-- Contact -->
+          <section id="contact" class="py-5 reveal">
+            <div class="section-title mb-4">
+              <i class="bi bi-rocket-takeoff text-gradient" aria-hidden="true"></i>
+              <h2 class="h4 m-0 fw-bold">Let's Create Something Extraordinary</h2>
+            </div>
+
+            <div class="contact-story-card p-4 mb-4">
+              <div class="contact-story-content">
+                <h3 class="h5 fw-semibold mb-3 gradient-text">
+                  Transform Your MedTech Vision Into Reality
+                </h3>
+                <p class="contact-story-text mb-4">
+                  Whether you're launching a breakthrough surgical technology, building surgeon education platforms,
+                  or scaling digital transformation across global markets — I bring <strong>11+ years of proven expertise</strong>
+                  in turning complex medical innovations into commercial success stories.
+                </p>
+
+                <div class="contact-value-props mb-4">
+                  <div class="value-prop-item">
+                    <i class="bi bi-lightning-charge-fill text-warning"></i>
+                    <span>Strategic marketing leadership that drives <strong>double-digit revenue growth</strong></span>
+                  </div>
+                  <div class="value-prop-item">
+                    <i class="bi bi-globe2 text-info"></i>
+                    <span>Global team management across <strong>30+ countries</strong></span>
+                  </div>
+                  <div class="value-prop-item">
+                    <i class="bi bi-award-fill text-success"></i>
+                    <span>Surgeon education programs reaching <strong>thousands of healthcare professionals</strong></span>
+                  </div>
+                </div>
+
+                <div class="contact-cta-section">
+                  <p class="contact-cta-text fw-medium mb-3">
+                    Ready to elevate your next project to world-class standards?
+                  </p>
+
+                  <div class="contact-actions d-grid gap-3">
+                    <a href="mailto:lukas.regniet@medartis.com?subject=Strategic%20Collaboration%20Opportunity&body=Hi%20Lukas,%0D%0A%0D%0AI'm%20interested%20in%20discussing%20how%20your%20expertise%20can%20help%20us%20achieve%20breakthrough%20results%20in:%0D%0A%0D%0A-%20Digital%20transformation%0D%0A-%20Product%20launch%20strategy%0D%0A-%20Surgeon%20education%0D%0A-%20Global%20market%20expansion%0D%0A-%20Other:%20____________%0D%0A%0D%0AProject%20timeline:%20____________%0D%0ABudget%20range:%20____________%0D%0A%0D%0ALet's%20schedule%20a%20strategic%20discussion.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Your%20Company]%0D%0A[Your%20Phone]"
+                       class="btn btn-accent btn-lg contact-primary-cta"
+                       role="button">
+                       <i class="bi bi-send-fill"></i>
+                       <span class="cta-text">
+                         <strong>Start Strategic Discussion</strong>
+                         <small class="d-block">Schedule a consultation call</small>
+                       </span>
+                    </a>
+
+                    <div class="contact-secondary-actions d-flex gap-2">
+                      <a href="https://www.linkedin.com/in/lukas-regniet/"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="btn btn-outline-primary flex-fill"
+                         role="button">
+                         <i class="bi bi-linkedin"></i>
+                         Connect on LinkedIn
+                      </a>
+
+                      <a href="Lukas Regniet CV 2025 Digital Transformation.pdf"
+                         download
+                         class="btn btn-outline-secondary flex-fill"
+                         role="button">
+                         <i class="bi bi-file-earmark-pdf"></i>
+                         Download CV
+                      </a>
+                    </div>
+
+                    <button id="copyShare"
+                            class="btn btn-outline-dark btn-sm"
+                            role="button">
+                            <i class="bi bi-link-45deg"></i>
+                            Share This Profile
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-info-grid">
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div class="contact-info-content">
+                  <h4 class="contact-info-title">Location</h4>
+                  <p class="contact-info-text">Basel, Switzerland</p>
+                  <small class="contact-info-note">Open to global remote collaboration</small>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="bi bi-clock-fill"></i>
+                </div>
+                <div class="contact-info-content">
+                  <h4 class="contact-info-title">Response Time</h4>
+                  <p class="contact-info-text">Within 24 hours</p>
+                  <small class="contact-info-note">Usually same business day</small>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="bi bi-calendar-check-fill"></i>
+                </div>
+                <div class="contact-info-content">
+                  <h4 class="contact-info-title">Availability</h4>
+                  <p class="contact-info-text">New Projects Welcome</p>
+                  <small class="contact-info-note">Strategic consulting & leadership roles</small>
+                </div>
               </div>
             </div>
           </section>
+
         </aside>
       </div>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="footer py-4">
     <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
       <div>
-        <span class="me-2">© <span id="year"></span> Lukas Regniet</span>
-        <span class="muted">Press <span class="kbd">/</span> to quick search · <span class="kbd">t</span> to toggle timeline</span>
+        <span class="me-2">
+          © <span id="year"></span> Lukas Regniet
+        </span>
+        <span class="muted">
+          Press <span class="kbd">/</span> to quick search
+        </span>
       </div>
+
       <div class="d-flex gap-2">
-        <button class="btn btn-sm btn-outline-dark" id="toggleTheme" type="button"><i class="bi bi-moon"></i> Toggle Theme</button>
-        <button class="btn btn-sm btn-outline-dark" id="toggleView" type="button"><i class="bi bi-code"></i> Toggle JSON View</button>
-        <button class="btn btn-sm btn-outline-dark" id="downloadJsonFoot" type="button"><i class="bi bi-download"></i> Download JSON</button>
+        <button class="btn btn-sm btn-outline-dark"
+                id="toggleTheme"
+                type="button">
+          <i class="bi bi-moon"></i> Toggle Theme
+        </button>
       </div>
     </div>
   </footer>
 
+  <!-- Vendor JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lukas Regniet",
+    "jobTitle": "Head of Global Marketing Services & Digital Solutions",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Medartis AG"
+    },
+    "url": "https://lukasregniet.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/lukas-regniet/"
+    ],
+    "knowsAbout": ["Digital Marketing", "MedTech", "Healthcare Innovation", "Strategic Leadership", "Surgeon Education", "Digital Transformation"],
+    "description": "Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation, surgeon education, and cross-functional team leadership.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Basel",
+      "addressCountry": "Switzerland"
+    }
+  }
+  </script>
+
+  <!-- Your JS -->
   <script src="app.js"></script>
+
+  <!-- Performance monitoring -->
+  <script>
+    // Basic performance monitoring
+    window.addEventListener('load', () => {
+      if ('performance' in window) {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+      }
+    });
+  </script>
 </body>
 </html>
