@@ -109,64 +109,53 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="container">
-      <div class="row g-4 align-items-center">
+<!-- Hero -->
+<header class="hero position-relative overflow-hidden">
+  <!-- Fullscreen background video -->
+  <div class="hero-bg-video position-absolute top-0 start-0 w-100 h-100 overflow-hidden">
+    <iframe
+      id="heroVimeo"
+      src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      loading="eager"
+      title="Lukas Regniet — Background Video"
+      class="position-absolute top-0 start-0 w-100 h-100"
+      style="object-fit: cover;">
+    </iframe>
+    <div class="hero-fade-overlay"></div>
+  </div>
 
-        <!-- Text / CTA -->
-        <div class="col-lg-7">
-          <div class="hero-card reveal">
-            <h1 class="display-4 fw-bold mb-4">
-              <span class="gradient-text">Where Strategy, Creativity, and Execution</span><br>
-              Drive Healthcare Innovation.
-            </h1>
+  <!-- Foreground content -->
+  <div class="container position-relative text-white py-5">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-lg-10 col-xl-8">
+        <div class="hero-card bg-transparent shadow-none">
+          <h1 class="display-4 fw-bold mb-4 gradient-text">
+            Where Strategy, Creativity, and Execution<br>
+            Drive Healthcare Innovation.
+          </h1>
 
-            <p class="lead muted mb-4">
-              Digital marketing leader with <strong>11+ years in MedTech</strong> — empowering healthcare professionals through
-              strategic innovation, digital transformation, and surgeon education at the highest level.
-            </p>
+          <p class="lead mb-4">
+            Digital marketing leader with <strong>11+ years in MedTech</strong> — empowering healthcare professionals through
+            strategic innovation, digital transformation, and surgeon education at the highest level.
+          </p>
 
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              <!-- PDF Download -->
-              <a id="downloadPdf"
-                 class="btn btn-outline-dark btn-lg"
-                 role="button"
-                 href="Lukas Regniet CV 2025 Digital Transformation.pdf"
-                 download>
-                <i class="bi bi-file-earmark-pdf"></i>
-                Download CV (PDF)
-              </a>
-
-              <a href="#experience"
-                 class="btn btn-accent btn-lg"
-                 role="button">
-                <i class="bi bi-arrow-down-circle"></i>
-                Explore My Work
-              </a>
-            </div>
+          <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <a href="Lukas Regniet CV 2025 Digital Transformation.pdf" download class="btn btn-outline-light btn-lg">
+              <i class="bi bi-file-earmark-pdf"></i> Download CV (PDF)
+            </a>
+            <a href="#experience" class="btn btn-accent btn-lg">
+              <i class="bi bi-arrow-down-circle"></i> Explore My Work
+            </a>
           </div>
-        </div>
-
-        <!-- Video / Visual -->
-        <div class="col-lg-5 text-center position-relative" style="min-height:320px">
-          <div class="ratio ratio-9x16 d-none d-lg-block" style="max-height:520px">
-            <!-- Vimeo embed: autoplay muted, we soft-loop 5s segment via inline script -->
-            <iframe
-              id="heroVimeo"
-              src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowfullscreen
-              style="border-radius:1rem; border:1px solid rgba(148,163,184,.18);">
-            </iframe>
-          </div>
-
-          <!-- glow line under video -->
-          <div class="glow-line mt-3" aria-hidden="true"></div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <!-- Main content -->
   <main class="container pb-5">
