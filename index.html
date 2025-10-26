@@ -151,10 +151,10 @@
         <!-- Video / Visual -->
         <div class="col-lg-5 text-center position-relative" style="min-height:320px">
           <div class="ratio ratio-9x16 d-none d-lg-block" style="max-height:520px">
-            <!-- Vimeo embed: autoplay muted, we soft-loop 5s segment via app.js -->
+            <!-- Vimeo embed: autoplay muted, we soft-loop 5s segment via inline script -->
             <iframe
               id="heroVimeo"
-              src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0"
+              src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0"
               allow="autoplay; fullscreen; picture-in-picture"
               allowfullscreen
               style="border-radius:1rem; border:1px solid rgba(148,163,184,.18);">
@@ -538,6 +538,112 @@
         </div>`;
       wrap.appendChild(item);
     });
+  })();
+  </script>
+
+  <!-- ==== Vimeo 5s Loop mit Soft-Fade (robust, guarded) ==== -->
+  <script>
+  (function initVimeoLoop(){
+    if (window.__hasVimeoLoop) return; // Guard gegen doppelte Initialisierung
+    window.__hasVimeoLoop = true;
+
+    const VIDEO_ID = '1129683666';
+    const IFRAME_ID = 'heroVimeo';
+    const START_AT = 7;        // Sekunden
+    const SEGMENT = 5;         // Länge
+    const FADE_DURATION = 0.6; // s
+    const FADE_LEAD_IN = 0.5;  // s vor Segmentende
+
+    function onReady(fn){
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+      else fn();
+    }
+    function waitForIframe(id, timeoutMs=6000){
+      return new Promise((resolve, reject)=>{
+        const t0 = performance.now();
+        (function poll(){
+          const el = document.getElementById(id);
+          if (el) return resolve(el);
+          if (performance.now()-t0 > timeoutMs) return reject(new Error('Iframe not found: #' + id));
+          requestAnimationFrame(poll);
+        })();
+      });
+    }
+    function ensureVimeoApi(){
+      return new Promise((resolve, reject)=>{
+        if (window.Vimeo && typeof window.Vimeo.Player === 'function') return resolve();
+        const s = document.createElement('script');
+        s.src = 'https://player.vimeo.com/api/player.js';
+        s.async = true;
+        s.onload = ()=>resolve();
+        s.onerror = ()=>reject(new Error('Failed to load Vimeo API'));
+        document.head.appendChild(s);
+      });
+    }
+    function createFadeOverlay(iframe){
+      const container = iframe.parentElement;
+      if (!container) return null;
+      container.style.position = 'relative';
+      const overlay = document.createElement('div');
+      Object.assign(overlay.style, {
+        position:'absolute', inset:'0', pointerEvents:'none',
+        opacity:'0', transition:`opacity ${FADE_DURATION}s ease`,
+        background: getComputedStyle(document.documentElement).getPropertyValue('--bs-body-bg') || '#fff',
+        zIndex: 1
+      });
+      container.appendChild(overlay);
+      // Theme-Change nachziehen
+      const mo = new MutationObserver(()=>{
+        overlay.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bs-body-bg') || '#fff';
+      });
+      mo.observe(document.documentElement, {attributes:true, attributeFilter:['data-bs-theme']});
+      return overlay;
+    }
+
+    async function setup(){
+      try{
+        const iframe = await waitForIframe(IFRAME_ID);
+
+        // Sanity: Player-URL sicherstellen
+        if (!/player\.vimeo\.com\/video\/\d+/.test(iframe.src)) {
+          iframe.src = `https://player.vimeo.com/video/${VIDEO_ID}?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0`;
+        }
+
+        await ensureVimeoApi();
+        const player = new Vimeo.Player(iframe);
+
+        await player.setLoop(false).catch(()=>{});
+        await player.setMuted(true).catch(()=>{});
+        const overlay = createFadeOverlay(iframe);
+
+        const duration = await player.getDuration().catch(()=>null);
+        const start = Math.min(START_AT, (duration||START_AT+SEGMENT) - 0.1);
+
+        await player.setCurrentTime(Math.max(0, start)).catch(()=>{});
+        await player.play().catch(()=>{ /* Autoplay könnte blockiert sein – wird beim 1. Klick starten */ });
+
+        let fading = false;
+        player.on('timeupdate', (e)=>{
+          const t = e.seconds || 0;
+          const rel = (t - start);
+          if (rel >= SEGMENT - FADE_LEAD_IN && !fading && overlay){
+            fading = true; overlay.style.opacity = '1';
+          }
+          if (rel >= SEGMENT){
+            player.setCurrentTime(start).then(()=>{
+              if (overlay) overlay.style.opacity = '0';
+              fading = false;
+            }).catch(()=>{});
+          }
+        });
+
+        // Falls pausiert (Autopause etc.), erneut starten
+        player.on('pause', async ()=>{ try{ await player.play(); }catch(e){} });
+      } catch(e){
+        console.error('[VimeoLoop] init failed:', e);
+      }
+    }
+    onReady(setup);
   })();
   </script>
 
