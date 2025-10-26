@@ -147,74 +147,127 @@ const debounce = (func, wait) => {
 })();
 
 //
-// Vimeo 5s loop segment with soft fade
-// - plays from 7s to 12s
-// - fades out last 0.5s, seeks back to 7s, fades back in
+// Vimeo 5s Loop mit Soft-Fade — robust & mit Debug
 //
 (function initVimeoLoop(){
-  const iframe = document.getElementById('heroVimeo');
-  if (!iframe) return;
+  const VIDEO_ID = '1129683666';  // ggf. anpassen
+  const IFRAME_ID = 'heroVimeo';  // muss mit HTML übereinstimmen
 
-  const startAt        = 7;    // seconds
-  const SEGMENT        = 5;    // seconds total loop length
-  const FADE_DURATION  = 0.6;  // seconds fade overlay anim
-  const FADE_LEAD_IN   = 0.5;  // start fading this many seconds before segment end
+  const START_AT = 7;        // Startpunkt (Sek.)
+  const SEGMENT = 5;         // Segmentlänge (Sek.)
+  const FADE_DURATION = 0.6; // Fade-Dauer (Sek.)
+  const FADE_LEAD_IN = 0.5;  // Fade beginnt X Sek. vor Segmentende
 
-  // wrap iframe with fade overlay
-  const container = iframe.parentElement;
-  container.style.position = 'relative';
+  const log = (...a)=>console.log('[VimeoLoop]', ...a);
+  const warn = (...a)=>console.warn('[VimeoLoop]', ...a);
+  const err = (...a)=>console.error('[VimeoLoop]', ...a);
 
-  const fadeOverlay = document.createElement('div');
-  Object.assign(fadeOverlay.style, {
-    position: 'absolute',
-    inset: '0',
-    pointerEvents: 'none',
-    opacity: '0',
-    transition: `opacity ${FADE_DURATION}s ease`,
-    background: '#fff'
-  });
-  container.appendChild(fadeOverlay);
-
-  const activateLoop = () => {
-    const player = new Vimeo.Player(iframe);
-
-    player.setLoop(false);
-    player.setMuted(true);
-
-    // jump to segment start and play
-    player.setCurrentTime(startAt).catch(()=>{});
-    player.play().catch(()=>{});
-
-    let fading = false;
-
-    player.on('timeupdate', (e) => {
-      const t = e.seconds;
-
-      // start fade a bit before we jump
-      if (t >= startAt + SEGMENT - FADE_LEAD_IN && !fading) {
-        fading = true;
-        fadeOverlay.style.opacity = '1';
-      }
-
-      // hard jump back to startAt + fade reset
-      if (t >= startAt + SEGMENT) {
-        player.setCurrentTime(startAt).then(() => {
-          fadeOverlay.style.opacity = '0';
-          fading = false;
-        });
-      }
-    });
-  };
-
-  // load Vimeo API if not injected yet
-  if (typeof Vimeo === 'undefined' || !Vimeo.Player) {
-    const s = document.createElement('script');
-    s.src = 'https://player.vimeo.com/api/player.js';
-    s.onload = activateLoop;
-    document.head.appendChild(s);
-  } else {
-    activateLoop();
+  function onReady(fn){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
   }
+
+  function waitForIframe(id, timeoutMs=6000){
+    return new Promise((resolve, reject)=>{
+      const start = performance.now();
+      (function poll(){
+        const el = document.getElementById(id);
+        if (el) return resolve(el);
+        if (performance.now()-start > timeoutMs) return reject(new Error('Iframe not found: #' + id));
+        requestAnimationFrame(poll);
+      })();
+    });
+  }
+
+  function ensureVimeoApi(){
+    return new Promise((resolve, reject)=>{
+      if (window.Vimeo && typeof window.Vimeo.Player === 'function') return resolve();
+      const s = document.createElement('script');
+      s.src = 'https://player.vimeo.com/api/player.js';
+      s.async = true;
+      s.onload = ()=>resolve();
+      s.onerror = ()=>reject(new Error('Failed to load Vimeo API'));
+      document.head.appendChild(s);
+    });
+  }
+
+  function createFadeOverlay(iframe){
+    const container = iframe.parentElement;
+    if (!container) return null;
+    container.style.position = 'relative';
+    const overlay = document.createElement('div');
+    Object.assign(overlay.style, {
+      position:'absolute', inset:'0', pointerEvents:'none',
+      opacity:'0', transition:`opacity ${FADE_DURATION}s ease`,
+      background: getComputedStyle(document.documentElement)
+        .getPropertyValue('--bs-body-bg') || '#fff', zIndex: 1
+    });
+    container.appendChild(overlay);
+
+    // Hintergrund bei Theme-Wechsel nachziehen
+    const mo = new MutationObserver(()=>{
+      overlay.style.background = getComputedStyle(document.documentElement)
+        .getPropertyValue('--bs-body-bg') || '#fff';
+    });
+    mo.observe(document.documentElement, {attributes:true, attributeFilter:['data-bs-theme']});
+    return overlay;
+  }
+
+  async function setup(){
+    try{
+      const iframe = await waitForIframe(IFRAME_ID);
+
+      // Falsche URL? -> automatisch auf Player-URL setzen
+      const srcOk = /player\.vimeo\.com\/video\/(\d+)/.test(iframe.src);
+      if (!srcOk) {
+        warn('Iframe src ist keine Player-URL. Setze sie automatisch.');
+        iframe.src = `https://player.vimeo.com/video/${VIDEO_ID}?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0`;
+      }
+
+      await ensureVimeoApi();
+      const player = new Vimeo.Player(iframe);
+
+      await player.setLoop(false).catch(()=>{});
+      await player.setMuted(true).catch(()=>{});
+      const overlay = createFadeOverlay(iframe);
+
+      const duration = await player.getDuration().catch(()=>null);
+      const start = Math.min(START_AT, (duration||START_AT+SEGMENT) - 0.1);
+
+      await player.setCurrentTime(Math.max(0, start)).catch(()=>{});
+      await player.play().catch(e=>{
+        warn('Autoplay blockiert. Ein Klick irgendwo auf die Seite startet das Video.', e);
+      });
+
+      let fading = false;
+      player.on('timeupdate', (e)=>{
+        const t = e.seconds || 0;
+        const rel = (t - start);
+
+        if (rel >= SEGMENT - FADE_LEAD_IN && !fading && overlay){
+          fading = true;
+          overlay.style.opacity = '1';
+        }
+        if (rel >= SEGMENT){
+          player.setCurrentTime(start).then(()=>{
+            if (overlay) overlay.style.opacity = '0';
+            fading = false;
+          }).catch(err);
+        }
+      });
+
+      // Falls der Player pausiert (Autopause etc.), wieder starten
+      player.on('pause', async ()=>{
+        try { await player.play(); } catch(e) { /* ignore */ }
+      });
+
+      log('Vimeo loop initialisiert.', {startAt:start, segment:SEGMENT});
+    } catch(e){
+      err('Initialisierung fehlgeschlagen:', e);
+    }
+  }
+
+  onReady(setup);
 })();
 
 //
