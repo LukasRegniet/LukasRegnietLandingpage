@@ -147,39 +147,16 @@ const debounce = (func, wait) => {
 })();
 
 //
-// Vimeo Hero-Loop (10–17s) mit Soft-Fade
+// Vimeo Hero-Loop (68–75s) mit richtungsabhängigem Soft-Fade (rechts Desktop / unten Mobile)
 //
 (function initVimeoHeroLoop(){
-  const IFRAME_ID = 'heroVimeo';   // muss mit dem HTML <iframe id="heroVimeo"> übereinstimmen
-  const START_AT  = 10;            // Startzeit in Sekunden
-  const SEGMENT   = 7;             // Länge des Segments (10s -> 17s)
-  const FADE_DUR  = 0.5;           // Dauer des Fades in Sekunden
+  const IFRAME_ID = 'heroVimeo';   // <iframe id="heroVimeo">
+  const START_AT  = 68;            // 1:08
+  const SEGMENT   = 7;             // bis 1:15
+  const FADE_DUR  = 0.5;           // s
+  const EPS       = 0.05;          // Toleranz gegen Frame-Jitter
 
-  // versuche eine bereits vorhandene Overlay-DIV zu nutzen (z. B. .hero-fade-overlay).
-  // Wenn es keine gibt, legen wir im Iframe-Container dynamisch eine an.
-  function getOrCreateFadeOverlay(iframe){
-    const existing = document.querySelector('.hero-fade-overlay');
-    if (existing) return existing;
-
-    const parent = iframe && iframe.parentElement;
-    if (!parent) return null;
-
-    const overlay = document.createElement('div');
-    overlay.className = 'hero-fade-overlay';
-    overlay.style.position   = 'absolute';
-    overlay.style.inset      = '0';
-    overlay.style.pointerEvents = 'none';
-    overlay.style.opacity    = '0';
-    overlay.style.transition = `opacity ${FADE_DUR}s ease`;
-    overlay.style.zIndex     = '1';
-    overlay.style.background = 'rgba(0,0,0,.45)';
-
-    parent.style.position = parent.style.position || 'relative';
-    parent.appendChild(overlay);
-    return overlay;
-  }
-
-  function onDomReady(fn){
+  function onReady(fn){
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();
   }
@@ -195,7 +172,40 @@ const debounce = (func, wait) => {
     });
   }
 
-  onDomReady(async ()=>{
+  // Overlay anlegen oder vorhandenes nutzen
+  function getOrCreateFadeOverlay(iframe){
+    const parent = iframe.parentElement;
+    if (!parent) return null;
+    parent.style.position = parent.style.position || 'relative';
+
+    let overlay = parent.querySelector('.hero-fade-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'hero-fade-overlay';
+      overlay.style.position = 'absolute';
+      overlay.style.inset = '0';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.opacity = '0';
+      overlay.style.transition = `opacity ${FADE_DUR}s ease`;
+      overlay.style.zIndex = '1';
+      parent.appendChild(overlay);
+    }
+
+    const applyGradient = () => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      overlay.style.background = isMobile
+        // Mobile: Fade von unten nach oben
+        ? 'linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 35%, rgba(0,0,0,0) 65%)'
+        // Desktop: Fade von links->rechts (stärker rechts)
+        : 'linear-gradient(to right, rgba(0,0,0,0) 55%, rgba(0,0,0,.35) 78%, rgba(0,0,0,.75) 100%)';
+    };
+    applyGradient();
+    window.addEventListener('resize', applyGradient);
+
+    return overlay;
+  }
+
+  onReady(async ()=>{
     const iframe = document.getElementById(IFRAME_ID);
     if (!iframe) return;
 
@@ -203,37 +213,39 @@ const debounce = (func, wait) => {
       await loadVimeoApi();
       const player = new Vimeo.Player(iframe);
 
-      // Grund-Setup
+      // Basiskonfiguration
       await player.setLoop(false).catch(()=>{});
       await player.setMuted(true).catch(()=>{});
+      if (typeof player.setAutopause === 'function') {
+        try { await player.setAutopause(false); } catch(e) {}
+      }
 
-      // Overlay holen/erstellen
       const fadeOverlay = getOrCreateFadeOverlay(iframe);
 
-      // Starten
+      // Start an die gewünschte Stelle setzen und abspielen
       await player.setCurrentTime(START_AT).catch(()=>{});
-      await player.play().catch(()=>{ /* Autoplay kann blockiert sein; beim Klick startet es */ });
+      await player.play().catch(()=>{ /* Autoplay evtl. blockiert; Klick startet */ });
 
-      let fading = false;
+      let seeking = false;
       player.on('timeupdate', (e)=>{
-        const t = e && typeof e.seconds === 'number' ? e.seconds : 0;
+        const t = (e && typeof e.seconds === 'number') ? e.seconds : 0;
 
-        // kurz vor Ende weich abdunkeln
-        if (t >= START_AT + SEGMENT - FADE_DUR && !fading) {
-          fading = true;
-          if (fadeOverlay) fadeOverlay.style.opacity = '1';
+        // kurz vor Ende weich abdunkeln (rechts/unten)
+        if (t >= START_AT + SEGMENT - FADE_DUR - EPS && fadeOverlay) {
+          fadeOverlay.style.opacity = '1';
         }
 
-        // zurückspringen und Overlay wieder aufhellen
-        if (t >= START_AT + SEGMENT) {
+        // beim Ende zurückspringen
+        if (!seeking && t >= START_AT + SEGMENT - EPS) {
+          seeking = true;
           player.setCurrentTime(START_AT).then(()=>{
             if (fadeOverlay) fadeOverlay.style.opacity = '0';
-            fading = false;
-          }).catch(()=>{});
+            seeking = false;
+          }).catch(()=>{ seeking = false; });
         }
       });
 
-      // falls pausiert (Autopause etc.) -> wieder starten
+      // falls pausiert -> wieder starten
       player.on('pause', async ()=>{ try { await player.play(); } catch(e) {} });
     } catch (e) {
       console.error('[VimeoLoop] Fehler:', e);
