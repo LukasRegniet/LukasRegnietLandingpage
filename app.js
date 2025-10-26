@@ -147,131 +147,100 @@ const debounce = (func, wait) => {
 })();
 
 //
-// Vimeo 5s Loop mit Soft-Fade — robust & mit Debug
+// Vimeo Hero-Loop (10–17s) mit Soft-Fade
 //
-(function initVimeoLoop(){
-  const VIDEO_ID = '1129683666';  // ggf. anpassen
-  const IFRAME_ID = 'heroVimeo';  // muss mit HTML übereinstimmen
+(function initVimeoHeroLoop(){
+  const IFRAME_ID = 'heroVimeo';   // muss mit dem HTML <iframe id="heroVimeo"> übereinstimmen
+  const START_AT  = 10;            // Startzeit in Sekunden
+  const SEGMENT   = 7;             // Länge des Segments (10s -> 17s)
+  const FADE_DUR  = 0.5;           // Dauer des Fades in Sekunden
 
-  const START_AT = 7;        // Startpunkt (Sek.)
-  const SEGMENT = 5;         // Segmentlänge (Sek.)
-  const FADE_DURATION = 0.6; // Fade-Dauer (Sek.)
-  const FADE_LEAD_IN = 0.5;  // Fade beginnt X Sek. vor Segmentende
+  // versuche eine bereits vorhandene Overlay-DIV zu nutzen (z. B. .hero-fade-overlay).
+  // Wenn es keine gibt, legen wir im Iframe-Container dynamisch eine an.
+  function getOrCreateFadeOverlay(iframe){
+    const existing = document.querySelector('.hero-fade-overlay');
+    if (existing) return existing;
 
-  const log = (...a)=>console.log('[VimeoLoop]', ...a);
-  const warn = (...a)=>console.warn('[VimeoLoop]', ...a);
-  const err = (...a)=>console.error('[VimeoLoop]', ...a);
+    const parent = iframe && iframe.parentElement;
+    if (!parent) return null;
 
-  function onReady(fn){
+    const overlay = document.createElement('div');
+    overlay.className = 'hero-fade-overlay';
+    overlay.style.position   = 'absolute';
+    overlay.style.inset      = '0';
+    overlay.style.pointerEvents = 'none';
+    overlay.style.opacity    = '0';
+    overlay.style.transition = `opacity ${FADE_DUR}s ease`;
+    overlay.style.zIndex     = '1';
+    overlay.style.background = 'rgba(0,0,0,.45)';
+
+    parent.style.position = parent.style.position || 'relative';
+    parent.appendChild(overlay);
+    return overlay;
+  }
+
+  function onDomReady(fn){
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();
   }
 
-  function waitForIframe(id, timeoutMs=6000){
-    return new Promise((resolve, reject)=>{
-      const start = performance.now();
-      (function poll(){
-        const el = document.getElementById(id);
-        if (el) return resolve(el);
-        if (performance.now()-start > timeoutMs) return reject(new Error('Iframe not found: #' + id));
-        requestAnimationFrame(poll);
-      })();
-    });
-  }
-
-  function ensureVimeoApi(){
-    return new Promise((resolve, reject)=>{
-      if (window.Vimeo && typeof window.Vimeo.Player === 'function') return resolve();
+  function loadVimeoApi(){
+    return new Promise((res, rej)=>{
+      if (window.Vimeo && window.Vimeo.Player) return res();
       const s = document.createElement('script');
       s.src = 'https://player.vimeo.com/api/player.js';
-      s.async = true;
-      s.onload = ()=>resolve();
-      s.onerror = ()=>reject(new Error('Failed to load Vimeo API'));
+      s.onload = res;
+      s.onerror = ()=>rej(new Error('Vimeo API konnte nicht geladen werden'));
       document.head.appendChild(s);
     });
   }
 
-  function createFadeOverlay(iframe){
-    const container = iframe.parentElement;
-    if (!container) return null;
-    container.style.position = 'relative';
-    const overlay = document.createElement('div');
-    Object.assign(overlay.style, {
-      position:'absolute', inset:'0', pointerEvents:'none',
-      opacity:'0', transition:`opacity ${FADE_DURATION}s ease`,
-      background: getComputedStyle(document.documentElement)
-        .getPropertyValue('--bs-body-bg') || '#fff', zIndex: 1
-    });
-    container.appendChild(overlay);
+  onDomReady(async ()=>{
+    const iframe = document.getElementById(IFRAME_ID);
+    if (!iframe) return;
 
-    // Hintergrund bei Theme-Wechsel nachziehen
-    const mo = new MutationObserver(()=>{
-      overlay.style.background = getComputedStyle(document.documentElement)
-        .getPropertyValue('--bs-body-bg') || '#fff';
-    });
-    mo.observe(document.documentElement, {attributes:true, attributeFilter:['data-bs-theme']});
-    return overlay;
-  }
-
-  async function setup(){
-    try{
-      const iframe = await waitForIframe(IFRAME_ID);
-
-      // Falsche URL? -> automatisch auf Player-URL setzen
-      const srcOk = /player\.vimeo\.com\/video\/(\d+)/.test(iframe.src);
-      if (!srcOk) {
-        warn('Iframe src ist keine Player-URL. Setze sie automatisch.');
-        iframe.src = `https://player.vimeo.com/video/${VIDEO_ID}?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0`;
-      }
-
-      await ensureVimeoApi();
+    try {
+      await loadVimeoApi();
       const player = new Vimeo.Player(iframe);
 
+      // Grund-Setup
       await player.setLoop(false).catch(()=>{});
       await player.setMuted(true).catch(()=>{});
-      const overlay = createFadeOverlay(iframe);
 
-      const duration = await player.getDuration().catch(()=>null);
-      const start = Math.min(START_AT, (duration||START_AT+SEGMENT) - 0.1);
+      // Overlay holen/erstellen
+      const fadeOverlay = getOrCreateFadeOverlay(iframe);
 
-      await player.setCurrentTime(Math.max(0, start)).catch(()=>{});
-      await player.play().catch(e=>{
-        warn('Autoplay blockiert. Ein Klick irgendwo auf die Seite startet das Video.', e);
-      });
+      // Starten
+      await player.setCurrentTime(START_AT).catch(()=>{});
+      await player.play().catch(()=>{ /* Autoplay kann blockiert sein; beim Klick startet es */ });
 
       let fading = false;
       player.on('timeupdate', (e)=>{
-        const t = e.seconds || 0;
-        const rel = (t - start);
+        const t = e && typeof e.seconds === 'number' ? e.seconds : 0;
 
-        if (rel >= SEGMENT - FADE_LEAD_IN && !fading && overlay){
+        // kurz vor Ende weich abdunkeln
+        if (t >= START_AT + SEGMENT - FADE_DUR && !fading) {
           fading = true;
-          overlay.style.opacity = '1';
+          if (fadeOverlay) fadeOverlay.style.opacity = '1';
         }
-        if (rel >= SEGMENT){
-          player.setCurrentTime(start).then(()=>{
-            if (overlay) overlay.style.opacity = '0';
+
+        // zurückspringen und Overlay wieder aufhellen
+        if (t >= START_AT + SEGMENT) {
+          player.setCurrentTime(START_AT).then(()=>{
+            if (fadeOverlay) fadeOverlay.style.opacity = '0';
             fading = false;
-          }).catch(err);
+          }).catch(()=>{});
         }
       });
 
-      // Falls der Player pausiert (Autopause etc.), wieder starten
-      player.on('pause', async ()=>{
-        try { await player.play(); } catch(e) { /* ignore */ }
-      });
-
-      log('Vimeo loop initialisiert.', {startAt:start, segment:SEGMENT});
-    } catch(e){
-      err('Initialisierung fehlgeschlagen:', e);
+      // falls pausiert (Autopause etc.) -> wieder starten
+      player.on('pause', async ()=>{ try { await player.play(); } catch(e) {} });
+    } catch (e) {
+      console.error('[VimeoLoop] Fehler:', e);
     }
-  }
-
-  onReady(setup);
+  });
 })();
 
-//
-// Particle Background System
 //
 (function initParticles() {
   const canvas = document.createElement('canvas');
