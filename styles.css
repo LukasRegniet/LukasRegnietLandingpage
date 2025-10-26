@@ -847,6 +847,12 @@ a.btn-accent:hover::before,
   100% { background-position: 1000px 0; }
 }
 
+/* Aspect-ratio helpers (Bootstrap-compatible) */
+.ratio-9x16 {
+  aspect-ratio: 9 / 16;                 /* modern browsers */
+  --bs-aspect-ratio: calc(16 / 9 * 100%); /* Bootstrap .ratio fallback */
+}
+
 /* Floating animation for hero video */
 .hero .ratio {
   animation: float 6s ease-in-out infinite;
