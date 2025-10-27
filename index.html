@@ -1,653 +1,1274 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert</title>
-  <meta name="description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation, surgeon education, and cross-functional team leadership at Medartis AG." />
-  <meta name="keywords" content="Digital Marketing, MedTech, Healthcare Innovation, Strategic Leadership, Surgeon Education, Digital Transformation, Marketing Analytics, Product Launch Strategy" />
-  <meta name="author" content="Lukas Regniet" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://lukasregniet.com" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lukas Regniet — MedTech marketing leader driving digital transformation, surgeon education, and global growth.">
+  <title>Lukas Regniet — MedTech Marketing Leader</title>
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lukasregniet.com" />
-  <meta property="og:title" content="Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert" />
-  <meta property="og:description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation and surgeon education." />
-  <meta property="og:image" content="https://lukasregniet.com/og-image.jpg" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://lukasregniet.com" />
-  <meta property="twitter:title" content="Lukas Regniet — Digital Marketing Leader & MedTech Innovation Expert" />
-  <meta property="twitter:description" content="Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation and surgeon education." />
-  <meta property="twitter:image" content="https://lukasregniet.com/og-image.jpg" />
-
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#667eea" />
-
-  <!-- Preconnect to external domains -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://player.vimeo.com" />
-
-  <!-- Vendor CSS via CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
-  <!-- Your custom styles -->
-  <link href="styles.css" rel="stylesheet" />
-
-  <!-- Tiny fix styles for single timeline & aligned dot (non-breaking) -->
-  <style>
-    /* ensure only ONE vertical line (some themes add one via CSS already) */
-    #experience .timeline{position:relative; margin-left:1.5rem;}
-    #experience .t-item{position:relative;}
-    #experience .t-dot{position:absolute; width:14px; height:14px; border-radius:50%;
-      left:-29px; top:18px; box-shadow:0 0 0 3px var(--bs-body-bg);
-      background: var(--bs-primary); opacity:.85}
-    @media (prefers-color-scheme: dark){
-      #experience .t-dot{box-shadow:0 0 0 3px var(--bs-body-bg)}
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-<body data-bs-spy="scroll" data-bs-target="#nav" data-bs-smooth-scroll="true" tabindex="0">
-  <!-- Enhanced Navbar -->
-  <nav class="navbar navbar-expand-lg" id="nav" aria-label="Primary">
-    <div class="container">
-      <a class="navbar-brand fw-semibold" href="#" aria-label="Lukas Regniet Home">Lukas Regniet</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Key Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="#references">References</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
+<body>
+  <header id="top" class="site-header">
+    <nav class="main-nav">
+      <div class="container d-flex align-items-center justify-content-between gap-3">
+        <a class="brand" href="#top">Lukas Regniet</a>
+        <div class="nav-controls d-flex align-items-center gap-2">
+          <div class="language-switcher" data-slot="language-switcher"></div>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks">
+            <span class="nav-toggle-icon"></span>
+          </button>
+        </div>
+        <div id="navLinks" class="nav-links">
+          <a href="#about_and_skills">About</a>
+          <a href="#professional_experience">Experience</a>
+          <a href="#key_projects">Projects</a>
+          <a href="#leadership_philosophy">Leadership</a>
+          <a href="#education">Education</a>
+          <a href="#publications">Publication</a>
+          <a href="#awards">Awards</a>
+          <a href="#references">References</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Floating Mini Navigation -->
-  <nav class="floating-nav" id="floatingNav" aria-label="Quick Navigation">
-    <div class="floating-nav-container">
-      <button class="floating-nav-toggle" id="floatingNavToggle" aria-label="Toggle Quick Navigation">
-        <i class="bi bi-list"></i>
-      </button>
-      <div class="floating-nav-menu" id="floatingNavMenu">
-        <a href="#about" class="floating-nav-item" data-tooltip="About">
-          <i class="bi bi-person"></i>
-        </a>
-        <a href="#experience" class="floating-nav-item" data-tooltip="Experience">
-          <i class="bi bi-briefcase"></i>
-        </a>
-        <a href="#projects" class="floating-nav-item" data-tooltip="Projects">
-          <i class="bi bi-kanban"></i>
-        </a>
-        <a href="#contact" class="floating-nav-item" data-tooltip="Contact">
-          <i class="bi bi-envelope"></i>
-        </a>
-        <button class="floating-nav-item theme-toggle-float" id="themeToggleFloat" data-tooltip="Toggle Theme">
-          <i class="bi bi-moon"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-<!-- Hero -->
-<header class="hero position-relative overflow-hidden">
-  <!-- Fullscreen background video -->
-  <div class="hero-bg-video position-absolute top-0 start-0 w-100 h-100 overflow-hidden">
-    <iframe
-      id="heroVimeo"
-      src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen
-      loading="eager"
-      title="Lukas Regniet — Background Video"
-      class="position-absolute top-0 start-0 w-100 h-100"
-      style="object-fit: cover;">
-    </iframe>
-    <div class="hero-fade-overlay"></div>
-  </div>
-
-  <!-- Foreground content -->
-  <div class="container position-relative text-white py-5">
-    <div class="row align-items-center justify-content-center text-center">
-      <div class="col-lg-10 col-xl-8">
-        <div class="hero-card bg-transparent shadow-none">
-          <h1 class="display-4 fw-bold mb-4 gradient-text">
-            Where Strategy, Creativity, and Execution<br>
-            Drive Healthcare Innovation.
-          </h1>
-
-          <p class="lead mb-4">
-            Digital marketing leader with <strong>11+ years in MedTech</strong> — empowering healthcare professionals through
-            strategic innovation, digital transformation, and surgeon education at the highest level.
-          </p>
-
-          <div class="d-flex flex-wrap gap-2 justify-content-center">
-            <a href="Lukas Regniet CV 2025 Digital Transformation.pdf" download class="btn btn-outline-light btn-lg">
-              <i class="bi bi-file-earmark-pdf"></i> Download CV (PDF)
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-pretitle" data-slot="hero-pretitle">MedTech Marketing Leader</p>
+          <h1 class="hero-headline" data-slot="hero-headline">Where Strategy, Creativity, and Execution Drive Healthcare Innovation.</h1>
+          <p class="hero-subheadline" data-slot="hero-subheadline">Digital marketing leader with 11+ years in MedTech — empowering healthcare professionals through strategy and innovation.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">
+              <i class="bi bi-send"></i> <span data-i18n="cta.contact">Contact</span>
             </a>
-            <a href="#experience" class="btn btn-accent btn-lg">
-              <i class="bi bi-arrow-down-circle"></i> Explore My Work
+            <a class="btn btn-outline-light btn-lg" href="Lukas Regniet CV 2025 Digital Transformation.pdf">
+              <i class="bi bi-file-earmark-text"></i> <span data-i18n="cta.cv">Download CV</span>
             </a>
           </div>
         </div>
+        <div class="hero-media hero-media-wide" data-slot="hero-video">
+          <iframe
+            src="https://player.vimeo.com/video/1129683666?background=1&autoplay=1&muted=1&loop=1&playsinline=1"
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Hero video"
+            frameborder="0"></iframe>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
+    </section>
+  </header>
 
-
-  <!-- Main content -->
-  <main class="container pb-5">
-    <div class="row g-4">
-
-      <!-- Left column -->
-      <div class="col-lg-8">
-
-        <!-- About -->
-        <section id="about" class="py-4 reveal">
-          <div class="section-title">
-            <i class="bi bi-person-lines-fill" aria-hidden="true"></i>
-            <h2 class="h4 m-0">About</h2>
-          </div>
-          <p class="fs-5">
-            Strategic marketing leader passionate about advancing patient outcomes through innovation,
-            digital transformation, and surgeon education in MedTech.
-          </p>
-          <p class="fs-6 muted">
-            I lead cross-functional global teams, build digital ecosystems for surgeons and sales teams,
-            and translate complex clinical value into clear commercial impact.
-          </p>
-        </section>
-
-        <!-- Experience -->
-        <section id="experience" class="py-4 reveal">
-          <div class="section-title">
-            <i class="bi bi-briefcase" aria-hidden="true"></i>
-            <h2 class="h4 m-0">Professional Experience</h2>
-          </div>
-          <p class="muted">A journey through strategy, digital transformation, and leadership.</p>
-
-          <div class="timeline"><!-- Will be injected by script --></div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="py-4 reveal">
-          <div class="section-title">
-            <i class="bi bi-kanban" aria-hidden="true"></i>
-            <h2 class="h4 m-0">Key Projects</h2>
-          </div>
-
-          <div class="card p-4 hover-raise mb-3">
-            <div class="d-flex justify-content-between align-items-start gap-3">
-              <div>
-                <h5 class="mb-2">Global Digital Transformation</h5>
-                <p class="mb-0">
-                  Relaunch of Medartis.com, compliant eIFU platform, and the first Medartis ONE app —
-                  unifying surgeon education, content access, and sales enablement across regions.
-                </p>
-              </div>
-              <span class="pill">Highlight</span>
+  <main>
+    <section id="about_and_skills" class="section section-blue">
+      <div class="container">
+        <header class="section-header text-start">
+          <h2 data-slot="about-title">About &amp; Top Skills</h2>
+        </header>
+        <div class="about-grid" data-slot="about-grid">
+          <article class="about-card about-summary">
+            <div class="profile-wrapper">
+              <img src="lukas_regniet_profile_pic.jpg" alt="Portrait of Lukas Regniet" loading="lazy">
             </div>
-          </div>
-
-          <div class="card p-4 hover-raise mb-3">
-            <div class="d-flex justify-content-between align-items-start gap-3">
-              <div>
-                <h5 class="mb-2">Surgeon Education Ecosystem</h5>
-                <p class="mb-0">
-                  30+ surgical technique videos, live surgery content, KOL webinars, and global training
-                  programs to scale expert knowledge worldwide.
-                </p>
+            <div class="about-body">
+              <h3>About</h3>
+              <p>Strategic marketing leader passionate about advancing patient outcomes through innovation, digital transformation, and surgeon education in MedTech.</p>
+              <p>With over 11 years of international experience in orthopedic marketing, I combine clinical understanding with commercial strategy to build impactful brands and digital experiences. I have led global cross-functional teams to deliver major digital initiatives — including the relaunch of Medartis.com, the eIFU platform, and the creation of surgeon-focused education formats such as webinars, interviews and over 30 surgical technique videos and cadaver but also live surgery, filmed and edited.</p>
+              <p>I’m driven by curiosity, collaboration, and the belief that technology and education can truly empower healthcare professionals and improve patient care worldwide.</p>
+              <div class="skill-list skill-list-inline">
+                <span>Strategic Marketing Leadership</span>
+                <span>Digital Transformation</span>
+                <span>Cross-functional Team Leadership</span>
+                <span>Medical Device Marketing</span>
+                <span>Digital Content &amp; Education Strategy</span>
               </div>
-              <span class="pill">Education</span>
             </div>
-          </div>
-
-          <div class="card p-4 hover-raise">
-            <div class="d-flex justify-content-between align-items-start gap-3">
-              <div>
-                <h5 class="mb-2">Commercial Enablement / Sales Impact</h5>
-                <p class="mb-0">
-                  Data-driven campaign frameworks and enablement dashboards that supported
-                  double-digit revenue growth in key business lines.
-                </p>
-              </div>
-              <span class="pill">Growth</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- References -->
-        <section id="references" class="py-4 reveal">
-          <div class="section-title">
-            <i class="bi bi-quote" aria-hidden="true"></i>
-            <h2 class="h4 m-0">References &amp; Recommendations</h2>
-          </div>
-
-          <div class="card p-4 mb-3">
-            <blockquote class="quote m-0">
-              “A true digital all-rounder with vision and integrity.”
-              <div class="muted small mt-2">
-                — Y. Aister, Web Developer / Global Digital Transformation
-              </div>
-            </blockquote>
-          </div>
-
-          <div class="card p-4 mb-3">
-            <blockquote class="quote m-0">
-              “Combines deep technical and anatomical understanding with a people-first leadership style.”
-              <div class="muted small mt-2">
-                — E. Lorenz, Creative Lead MedTech
-              </div>
-            </blockquote>
-          </div>
-
-          <div class="card p-4">
-            <blockquote class="quote m-0">
-              “High level of commitment, motivation, and positive energy — connects people, process, and product.”
-              <div class="muted small mt-2">
-                — H. Wetzel, Data/CRM
-              </div>
-            </blockquote>
-          </div>
-        </section>
-
+          </article>
+        </div>
       </div>
+    </section>
 
-      <!-- Right column -->
-      <div class="col-lg-4">
-        <aside class="sticky-side">
-
-          <!-- Skills -->
-          <section id="skills" class="py-4 reveal">
-            <div class="section-title">
-              <i class="bi bi-stars" aria-hidden="true"></i>
-              <h2 class="h6 m-0">Top skills</h2>
-            </div>
-
-            <div class="d-flex flex-wrap">
-              <span class="tag"><i class="bi bi-check2-circle"></i> Strategic Marketing Leadership</span>
-              <span class="tag"><i class="bi bi-check2-circle"></i> Digital Transformation</span>
-              <span class="tag"><i class="bi bi-check2-circle"></i> Cross-functional Team Leadership</span>
-              <span class="tag"><i class="bi bi-check2-circle"></i> Surgeon Education</span>
-              <span class="tag"><i class="bi bi-check2-circle"></i> Product Launch Strategy</span>
-            </div>
-          </section>
-
-          <!-- Leadership -->
-          <section id="leadership" class="py-4 reveal">
-            <div class="section-title">
-              <i class="bi bi-people" aria-hidden="true"></i>
-              <h2 class="h6 m-0">Leadership</h2>
-            </div>
-
-            <ul class="list-unstyled m-0">
-              <li class="mb-2"><span class="pill">Leading teams of 9+ experts globally</span></li>
-              <li class="mb-2"><span class="pill">Building digital culture & process clarity</span></li>
-              <li class="mb-2"><span class="pill">Partnering with Product, Sales, Medical Affairs</span></li>
-            </ul>
-          </section>
-
-          <!-- Education -->
-          <section id="education" class="py-4 reveal">
-            <div class="section-title">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              <h2 class="h6 m-0">Education</h2>
-            </div>
-
-            <div class="card p-3 mb-3">
-              <div class="fw-semibold">German Sport University Cologne</div>
-              <div class="muted">M.Sc. Sports Technology</div>
-            </div>
-
-            <div class="card p-3">
-              <div class="fw-semibold">German Sport University Cologne</div>
-              <div class="muted">B.A. Sport Outdoor and Education</div>
-            </div>
-          </section>
-
-          <!-- Contact -->
-          <section id="contact" class="py-5 reveal">
-            <div class="section-title mb-4">
-              <i class="bi bi-rocket-takeoff text-gradient" aria-hidden="true"></i>
-              <h2 class="h4 m-0 fw-bold">Let's Create Something Extraordinary</h2>
-            </div>
-
-            <div class="contact-story-card p-4 mb-4">
-              <div class="contact-story-content">
-                <h3 class="h5 fw-semibold mb-3 gradient-text">
-                  Transform Your MedTech Vision Into Reality
-                </h3>
-                <p class="contact-story-text mb-4">
-                  Whether you're launching a breakthrough surgical technology, building surgeon education platforms,
-                  or scaling digital transformation across global markets — I bring <strong>11+ years of proven expertise</strong>
-                  in turning complex medical innovations into commercial success stories.
-                </p>
-
-                <div class="contact-value-props mb-4">
-                  <div class="value-prop-item">
-                    <i class="bi bi-lightning-charge-fill text-warning"></i>
-                    <span>Strategic marketing leadership that drives <strong>double-digit revenue growth</strong></span>
-                  </div>
-                  <div class="value-prop-item">
-                    <i class="bi bi-globe2 text-info"></i>
-                    <span>Global team management across <strong>30+ countries</strong></span>
-                  </div>
-                  <div class="value-prop-item">
-                    <i class="bi bi-award-fill text-success"></i>
-                    <span>Surgeon education programs reaching <strong>thousands of healthcare professionals</strong></span>
-                  </div>
+    <section id="professional_experience" class="section section-white">
+      <div class="container">
+        <header class="section-header d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3">
+          <div>
+            <h2 data-slot="experience-title">Professional Experience</h2>
+            <p class="section-subtitle" data-slot="experience-subtitle">Digital transformation, surgeon enablement, and global marketing leadership.</p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-outline-primary btn-sm" data-action="experience-expand">
+              <i class="bi bi-arrows-expand"></i> <span data-i18n="experience.expand">Expand all</span>
+            </button>
+            <button class="btn btn-outline-primary btn-sm" data-action="experience-collapse">
+              <i class="bi bi-arrows-collapse"></i> <span data-i18n="experience.collapse">Collapse all</span>
+            </button>
+          </div>
+        </header>
+        <div class="experience-list" data-slot="experience">
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medartis AG — Head of Global Marketing Service and Digital Solutions</h3>
+                  <div class="experience-meta">Sep 2023 - Present · 2 yrs 2 mos · Basel, Basel, Switzerland · On-site · Full-time</div>
                 </div>
-
-                <div class="contact-cta-section">
-                  <p class="contact-cta-text fw-medium mb-3">
-                    Ready to elevate your next project to world-class standards?
-                  </p>
-
-                  <div class="contact-actions d-grid gap-3">
-                    <a href="mailto:lukas.regniet@medartis.com?subject=Strategic%20Collaboration%20Opportunity&body=Hi%20Lukas,%0D%0A%0D%0AI'm%20interested%20in%20discussing%20how%20your%20expertise%20can%20help%20us%20achieve%20breakthrough%20results%20in:%0D%0A%0D%0A-%20Digital%20transformation%0D%0A-%20Product%20launch%20strategy%0D%0A-%20Surgeon%20education%0D%0A-%20Global%20market%20expansion%0D%0A-%20Other:%20____________%0D%0A%0D%0AProject%20timeline:%20____________%0D%0ABudget%20range:%20____________%0D%0A%0D%0ALet's%20schedule%20a%20strategic%20discussion.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Your%20Company]%0D%0A[Your%20Phone]"
-                       class="btn btn-accent btn-lg contact-primary-cta"
-                       role="button">
-                       <i class="bi bi-send-fill"></i>
-                       <span class="cta-text">
-                         <strong>Start Strategic Discussion</strong>
-                         <small class="d-block">Schedule a consultation call</small>
-                       </span>
-                    </a>
-
-                    <div class="contact-secondary-actions d-flex gap-2">
-                      <a href="https://www.linkedin.com/in/lukas-regniet/"
-                         target="_blank"
-                         rel="noopener noreferrer"
-                         class="btn btn-outline-primary flex-fill"
-                         role="button">
-                         <i class="bi bi-linkedin"></i>
-                         Connect on LinkedIn
-                      </a>
-
-                      <a href="Lukas Regniet CV 2025 Digital Transformation.pdf"
-                         download
-                         class="btn btn-outline-secondary flex-fill"
-                         role="button">
-                         <i class="bi bi-file-earmark-pdf"></i>
-                         Download CV
-                      </a>
-                    </div>
-
-                    <button id="copyShare"
-                            class="btn btn-outline-dark btn-sm"
-                            role="button">
-                            <i class="bi bi-link-45deg"></i>
-                            Share This Profile
-                    </button>
-                  </div>
+                <div class="experience-logo">
+                  <img src="medartis_logo.jpeg" alt="Medartis AG logo" loading="lazy">
                 </div>
               </div>
+            </header>
+            <div class="pill-group">
+              <span class="pill">Leadership</span>
+              <span class="pill">Digital Marketing Analytics</span>
+              <span class="pill">Product Marketing</span>
+              <span class="pill">Digitale Strategie</span>
+              <span class="pill">Marketing Strategy</span>
             </div>
-
-            <div class="contact-info-grid">
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="bi bi-geo-alt-fill"></i>
+            <details>
+              <summary><i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Led a global digital transformation program, managing 4 direct reports and a total team of 9 cross-regional marketing professionals to redefine Medartis’ customer engagement strategy through the relaunch of the corporate website, the implementation of a compliant eIFU platform, and the launch of the first Medartis ONE App – fully connected to the website backend to ensure seamless global content management across EMEA, the US, and APAC.</li>
+                    <li>Drove global product launches for upper and lower extremities by shaping differentiated value propositions with Product Management, Medical Affairs, and KOLs, and by steering end-to-end go-to-market strategies (messaging, sales enablement, training).</li>
+                    <li>Managed global marketing and digital budgets, optimizing resources to maximize ROI and strategic alignment.</li>
+                  </ul>
                 </div>
-                <div class="contact-info-content">
-                  <h4 class="contact-info-title">Location</h4>
-                  <p class="contact-info-text">Basel, Switzerland</p>
-                  <small class="contact-info-note">Open to global remote collaboration</small>
-                </div>
-              </div>
-
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="bi bi-clock-fill"></i>
-                </div>
-                <div class="contact-info-content">
-                  <h4 class="contact-info-title">Response Time</h4>
-                  <p class="contact-info-text">Within 24 hours</p>
-                  <small class="contact-info-note">Usually same business day</small>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Accelerated digital adoption among sales representatives and customers worldwide by providing 24/7 access to product education and marketing materials through the new website and the Medartis ONE App.</li>
+                    <li>Strengthened Medartis’ digital brand presence across all regions through consistent global messaging.</li>
+                    <li>Delivered measurable ROI through improved campaign performance and efficient budget allocation.</li>
+                  </ul>
                 </div>
               </div>
+            </details>
+          </article>
 
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="bi bi-calendar-check-fill"></i>
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medartis AG — Group Manager Digital Marketing and Analytics</h3>
+                  <div class="experience-meta">Mar 2021 - Sep 2023 · 2 yrs 7 mos · Basel, Basel, Switzerland · On-site · Full-time</div>
                 </div>
-                <div class="contact-info-content">
-                  <h4 class="contact-info-title">Availability</h4>
-                  <p class="contact-info-text">New Projects Welcome</p>
-                  <small class="contact-info-note">Strategic consulting & leadership roles</small>
+                <div class="experience-logo">
+                  <img src="medartis_logo.jpeg" alt="Medartis AG logo" loading="lazy">
                 </div>
               </div>
+            </header>
+            <div class="pill-group">
+              <span class="pill">Digital Transformation</span>
+              <span class="pill">Cross-functional Team Leadership</span>
+              <span class="pill">Social Media Marketing</span>
+              <span class="pill">Product Launch Planning</span>
             </div>
-          </section>
+            <details>
+              <summary><i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Led and organized a global marketing team of 10 experts (all direct reports) across key areas including social media marketing, translation and documentation, 3D development, web development, and print marketing.</li>
+                    <li>Transformed the backend of global Medartis website and implemented a new IT infrastructure to create a customer-focused digital service ecosystem that generated measurable data and insights to support global sales and marketing decisions.</li>
+                    <li>Developed and introduced a new campaign framework centered on customer-specific and sales-focused journeys, significantly improving communication and collaboration between subsidiaries and cross-functional business units such as Sales, Product Management, and Medical Affairs.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Achieved +25% revenue growth in 2021 driven by improved campaign performance and global alignment.</li>
+                    <li>Established a scalable digital marketing structure that enhanced lead generation, analytics, and overall marketing efficiency.</li>
+                    <li>Strengthened global collaboration and information flow between subsidiaries, creating a unified brand and data-driven marketing approach.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
 
-        </aside>
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medartis AG — Field Marketing Manager Lower Extremity</h3>
+                  <div class="experience-meta">Apr 2020 - Mar 2021 · 1 yr · Basel, Basel, Switzerland · Hybrid · Full-time</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medartis_logo.jpeg" alt="Medartis AG logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <div class="pill-group">
+              <span class="pill">Foot &amp; Ankle</span>
+              <span class="pill">Orthopedic foot surgery</span>
+              <span class="pill">Field marketing</span>
+              <span class="pill">KOL Management</span>
+            </div>
+            <details>
+              <summary><i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Implemented strategic, country-specific dashboards for the Foot &amp; Ankle business to generate deeper market insights and help affiliates identify cross-selling opportunities.</li>
+                    <li>Adapted the marketing strategy during the COVID-19 pandemic by introducing a digital content framework for the Foot &amp; Ankle portfolio, including more than 10 interactive international webinars with Key Opinion Leaders (KOLs).</li>
+                    <li>Conducted comprehensive market research to understand customer needs, market dynamics, and competitive trends, influencing data-driven decision-making and strategic prioritization.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Drove +30% sales growth for the Foot &amp; Ankle portfolio in 2020 by enabling affiliates to act on data-driven cross-selling insights.</li>
+                    <li>Enhanced customer engagement and brand visibility through 10+ international webinars and digital education initiatives.</li>
+                    <li>Strengthened market understanding across regions, leading to more targeted strategic decisions and improved sales efficiency.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medartis AG — International Education Manager Foot &amp; Ankle</h3>
+                  <div class="experience-meta">Oct 2017 - Apr 2020 · 2 yrs 7 mos · Basel, Basel, Switzerland</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medartis_logo.jpeg" alt="Medartis AG logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <details>
+              <summary><i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Conceptually developed and implemented an internationally standardized Foot &amp; Ankle training framework used to train and qualify more than 150 new sales employees across 9 subsidiaries over a 3-year period.</li>
+                    <li>Designed and integrated a global concept for more than 10 Surgical Centers of Excellence to strengthen networking among surgical experts and enhance brand visibility in key markets.</li>
+                    <li>Conceptualized, organized, and executed over 100 Foot &amp; Ankle educational programs and workshops in collaboration with renowned international Key Opinion Leaders (KOLs) in more than 15 countries worldwide.</li>
+                    <li>Promoted the global Foot &amp; Ankle business by driving clinical education initiatives, ensuring consistent brand communication, and fostering long-term surgeon engagement.</li>
+                    <li>Created and produced a wide range of educational videos and digital training materials for Foot &amp; Ankle procedures, supporting global training consistency and knowledge sharing.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Established an internationally recognized education framework that significantly improved sales training quality and clinical brand awareness.</li>
+                    <li>Built a global network of surgical experts and KOLs, increasing Medartis’ reputation and visibility in the Foot &amp; Ankle segment.</li>
+                    <li>Delivered 100+ high-impact educational programs that directly supported market growth and product adoption across regions.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medartis AG — Education Manager</h3>
+                  <div class="experience-meta">Oct 2014 - Oct 2017 · 3 yrs 1 mo · Basel, Basel, Switzerland</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medartis_logo.jpeg" alt="Medartis AG logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <details>
+              <summary><i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Implemented and customized an internationally applied Learning Management System (LMS) covering orthopedic products of the upper and lower extremities, used by approximately 200 sales employees across 9 subsidiaries worldwide.</li>
+                    <li>Created and produced sophisticated interactive digital education materials to enhance the professional development of sales representatives, driving higher engagement, product understanding, and sales effectiveness.</li>
+                    <li>Developed and implemented Medartis’ first international social media strategy to strengthen the company’s digital presence, global reach, and customer engagement in alignment with corporate communication goals.</li>
+                    <li>Collaborated with Product Management, Sales, and Medical Affairs to ensure consistent educational content and cross-functional alignment between clinical and commercial priorities.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Increased sales efficiency and target achievement through improved training accessibility and content quality.</li>
+                    <li>Launched a scalable LMS framework that became the global standard for Medartis’ education programs.</li>
+                    <li>Strengthened the company’s digital brand visibility and surgeon engagement through a unified social media approach.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medisana AG — Key Account Manager Sport &amp; Health</h3>
+                  <div class="experience-meta">Aug 2013 - Sep 2014 · 1 yr 2 mos</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medisana_ag_logo.jpeg" alt="Medisana AG logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <div class="pill-group">
+              <span class="pill">Key Account Management</span>
+              <span class="pill">Customer Acquisition</span>
+            </div>
+            <details>
+              <summary><i class="bi bi-caret-down-fill"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Led the establishment of a new nationwide distribution network across Germany for the MIO Alpha and other sport health products.</li>
+                    <li>Acquired and managed over 200 new retail and e-commerce accounts within the first year, ensuring strong market penetration and customer loyalty.</li>
+                    <li>Developed innovative Point-of-Sale (POS) concepts for sport and health products to increase visibility and sales conversion.</li>
+                    <li>Managed key account relationships and coordinated marketing activities to support product launches and brand positioning.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Built Medisana’s initial presence in the sports and wearable health technology market.</li>
+                    <li>Drove significant account growth and revenue expansion during the first year of distribution.</li>
+                    <li>Strengthened long-term relationships with key retailers and established scalable sales frameworks for future product lines.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>Medisana AG — Assistant Sales Manager Performance Sport</h3>
+                  <div class="experience-meta">Apr 2013 - Aug 2013 · 5 mos · Full-time</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medisana_ag_logo.jpeg" alt="Medisana AG logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <div class="pill-group">
+              <span class="pill">Presentation Skills</span>
+              <span class="pill">Digital Health</span>
+            </div>
+            <details>
+              <summary><i class="bi bi-caret-down-fill"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Created comprehensive training and sales presentations to support product launches and strengthen key account relationships.</li>
+                    <li>Conducted product training sessions for key accounts, distributors, and internal sales teams to improve product knowledge and sales performance.</li>
+                    <li>Organized national sales exhibitions and sport events to enhance brand visibility and customer engagement.</li>
+                    <li>Developed a structured distribution concept to expand market presence and improve sales channel efficiency.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Key Results</h4>
+                  <ul>
+                    <li>Improved product knowledge and sales confidence among key account partners.</li>
+                    <li>Contributed to the successful execution of multiple national events and trade shows.</li>
+                    <li>Supported the establishment of a consistent brand presence and sales training framework within the organization.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>ATOS Orthoparc Klinik — Surgical Assistant</h3>
+                  <div class="experience-meta">May 2011 - Aug 2012 · Cologne, Germany</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="ATOS logo.jpeg" alt="ATOS Orthoparc Klinik logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <details>
+              <summary><i class="bi bi-caret-down-fill"></i><span>Details</span></summary>
+              <div class="details-list">
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    <li>Surgery assistant for total knee and hip replacements for Prof. Dr. med. Joachim Schmidt.</li>
+                    <li>Learning how to behave in a surgical environment.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="experience-card">
+            <header>
+              <div class="d-flex flex-wrap gap-3 align-items-start">
+                <div class="flex-grow-1">
+                  <h3>medi — Career Stage</h3>
+                  <div class="experience-meta">Details to be added (no content provided).</div>
+                </div>
+                <div class="experience-logo">
+                  <img src="medi_logo_placeholder.png" alt="medi logo" loading="lazy">
+                </div>
+              </div>
+            </header>
+            <p class="text-muted">Details to be added (no content provided).</p>
+          </article>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section id="key_projects" class="section section-blue">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="projects-title">Key Projects</h2>
+        </header>
+        <div class="projects-grid" data-slot="projects">
+          <article class="project-card">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/1129683666?h=0&title=0&byline=0&portrait=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" title="Website Launch Keynote" frameborder="0"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Website Launch Keynote</h3>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/646887886?h=0&title=0&byline=0&portrait=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" title="Trimalleolar Ankle Fracture" frameborder="0"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Trimalleolar Ankle Fracture</h3>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/566586826?h=0&title=0&byline=0&portrait=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" title="Fusion of the MTP 1 Joint" frameborder="0"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Fusion of the MTP 1 Joint</h3>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/1024786690?h=0&title=0&byline=0&portrait=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" title="Treatment of a complex Distal Radius Fracture" frameborder="0"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Treatment of a complex Distal Radius Fracture</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership_philosophy" class="section section-white">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="leadership-title">Leadership Philosophy</h2>
+        </header>
+        <div class="leadership-grid" data-slot="leadership">
+          <article class="leadership-card">
+            <img src="Trust_icon.png" alt="Trust icon" loading="lazy">
+            <h3>Trust, Empowerment &amp; Accountability</h3>
+            <p>I believe in leading through trust, empowerment, and accountability — enabling experts to own their work and make decisions with confidence. My role as a leader is to provide vision and support, not control, creating the space for people to perform at their best.</p>
+          </article>
+          <article class="leadership-card">
+            <img src="Safty_Icon.png" alt="Psychological safety icon" loading="lazy">
+            <h3>Psychological Safety &amp; Open Dialogue</h3>
+            <p>I foster a culture of psychological safety and open dialogue — where every voice is heard and ideas can challenge the status quo. This mindset fuels innovation, strengthens collaboration, and builds teams that take shared responsibility for success.</p>
+          </article>
+          <article class="leadership-card">
+            <img src="Growth_Icon.png" alt="Growth icon" loading="lazy">
+            <h3>People Development &amp; Structured 1:1s</h3>
+            <p>I see people development as a core leadership duty. Through structured 1:1 meetings and clear alignment on goals, I help individuals grow their skills and careers — driving both personal fulfillment and long-term organizational success.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section section-blue">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="education-title">Education</h2>
+        </header>
+        <div class="education-grid" data-slot="education">
+          <article class="education-card">
+            <img src="Sportchschule_Icon.jpg" alt="Deutsche Sporthochschule Köln logo" loading="lazy">
+            <div>
+              <h3>Deutsche Sporthochschule Köln</h3>
+              <div class="details">Master of Science (M.S.), Sports Technology</div>
+              <div class="details">2010 - 2012</div>
+              <div class="details">Thesis: Impact of footwear and surface to touchdown kinematics in overground running</div>
+            </div>
+          </article>
+          <article class="education-card">
+            <img src="Sportchschule_Icon.jpg" alt="Deutsche Sporthochschule Köln logo" loading="lazy">
+            <div>
+              <h3>Deutsche Sporthochschule Köln</h3>
+              <div class="details">Bachelor of Arts (B.A.), Sport Outdoor and Education</div>
+              <div class="details">Sep 2007 - Jul 2010</div>
+            </div>
+          </article>
+          <article class="education-card">
+            <img src="Mariengymnasium_Icon.jpg" alt="Mariengymnasium logo" loading="lazy">
+            <div>
+              <h3>Mariengymnasium</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section section-white">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="publications-title">Publication</h2>
+        </header>
+        <div class="publication-list" data-slot="publications">
+          <article class="publication-card">
+            <h3>The effect of shoes, surface conditions and sex on leg geometry at touchdown in habitually shod runners</h3>
+            <p>S. Willwacher, L. Regniet, K. M. Fischer, K. D. Oberländer &amp; G.-P. Brüggemann</p>
+            <p class="details">Journal of Footwear Science Volume 6, Issue 3, pp. 129-138, 2014</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section section-blue">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="awards-title">Awards</h2>
+        </header>
+        <div class="awards-list" data-slot="awards">
+          <article class="awards-card">
+            <h3>Best student in annual examination of 2010 B.A. Sport Outdoor and Education</h3>
+            <p>Germany Sports University of Cologne</p>
+            <p class="details">Jul 2010</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="references" class="section section-white">
+      <div class="container">
+        <header class="section-header d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-3">
+          <div>
+            <h2 data-slot="references-title">References &amp; Recommendations</h2>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-outline-primary btn-sm" data-action="references-expand">
+              <i class="bi bi-arrows-expand"></i> <span data-i18n="references.expand">Expand all</span>
+            </button>
+            <button class="btn btn-outline-primary btn-sm" data-action="references-collapse">
+              <i class="bi bi-arrows-collapse"></i> <span data-i18n="references.collapse">Collapse all</span>
+            </button>
+          </div>
+        </header>
+        <div class="references-list" data-slot="references" data-limit="3">
+          <article class="reference-card">
+            <header>
+              <h3>Yannick Aister</h3>
+              <span>Web Developer | Driving Global Digital Transformation</span>
+              <span class="relationship">October 20, 2025 · reported directly to Lukas</span>
+            </header>
+            <blockquote>I had the privilege of working under Lukas’ leadership during my time as a Web Developer, and it was one of the most inspiring professional experiences I’ve had. Lukas has an exceptional ability to see the bigger picture while staying deeply involved in the details that make a digital project succeed. Lukas drove several major initiatives that truly transformed the company’s digital presence — including the complete relaunch of the corporate website and the launch of the Medartis ONE app. He approaches every project with vision, structure, and an impressive understanding of both technology and digital marketing. What always impressed me most was his broad knowledge across disciplines — from web technologies to marketing automation, UX, and analytics. He consistently connected these areas into cohesive strategies that pushed the company forward. He’s a true digital all-rounder with vision and integrity, and I’m very grateful for the time I got to work with him.</blockquote>
+          </article>
+          <article class="reference-card">
+            <header>
+              <h3>Eduard Lorenz</h3>
+              <span>Designing Clarity in MedTech – Creative Leader with a Passion for Turning Ideas into Visual Solutions</span>
+              <span class="relationship">October 19, 2025 · reported directly to Lukas</span>
+            </header>
+            <blockquote>I had the pleasure of working under Lukas‘ leadership, and it was an inspiring experience from day one. Lukas combines deep technical and anatomical understanding with an empathetic, people-first leadership style that makes collaboration both productive and genuinely enjoyable. He played a key role in shaping Medartis’ digital transformation — leading the complete relaunch of the company’s website and orchestrating Medartis ONE, the first true Medartis app, which he guided from concept to launch. His ability to connect innovation, technology, and medical insight is rare, and he consistently turns complex ideas into clear, user-focused solutions. Lukas knows the Microsoft ecosystem inside out — SharePoint, Lists, Team Planner, automation, Jira, and beyond — and uses it to bring structure, flow, and efficiency to every process. What stands out most, though, is his leadership: fair, transparent, and constructive, always encouraging open dialogue and shared ownership. He’s not only a forward-thinking innovator and strong communicator but also an educator and connector who genuinely values knowledge sharing and teamwork. Lukas is one of those leaders who elevate both projects and people — and someone I truly enjoyed working with.</blockquote>
+          </article>
+          <article class="reference-card">
+            <header>
+              <h3>Harald Wetzel</h3>
+              <span>Data Warehousing | BI | Analytics / SAP®</span>
+              <span class="relationship">October 15, 2025 · worked with Lukas but on different teams</span>
+            </header>
+            <blockquote>I had the pleasure of working with Lukas for more than two years, during which we jointly took care of the company’s CRM system — even though this was not our original area of expertise. Lukas successfully led a team of more than eight people and always brought a high level of commitment, motivation, and positive energy to every challenge. He has an outstanding understanding of the company, its products, people, and processes, and he always managed to connect the dots between them. Collaborating with him was truly a pleasure. Losing such a dedicated and knowledgeable colleague is a real loss for the company — and for me personally as well.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>Ceyda Ilisulu</h3>
+              <span>International Sales Lead EMEA at Medartis</span>
+              <span class="relationship">October 1, 2025 · worked with Lukas but on different teams</span>
+            </header>
+            <blockquote>I had the privilege of working with Lukas, and I was always impressed by his agility, determination, and passion for every task he takes on. He combines reliability and dedication with a strong drive to achieve results, which makes him someone you can always count on. What truly sets him apart is his ability to balance being a supportive colleague with being an inspiring leader. He genuinely cares about his team, fosters collaboration, and motivates others to grow alongside him. Lukas is not only a great manager but also a team player who consistently adds value, and I can wholeheartedly recommend him as an asset to any organization.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>Adriane Lang</h3>
+              <span>Marketing &amp; Product Management Professional | Turning Innovation into Market Impact</span>
+              <span class="relationship">September 23, 2025 · worked with Lukas on the same team</span>
+            </header>
+            <blockquote>I had the great pleasure of working with Lukas, and I was always impressed by his energy and drive. He is someone who doesn’t just do his job well, but constantly looks for ways to make things better. Whether it’s improving processes, staying on top of the latest technologies, or challenging the status quo, Lukas always brings fresh ideas and solutions. What I really appreciate is that he never limits his perspective to his own department, he consistently looks at the bigger picture and thinks about how to move the whole company forward. On top of that, Lukas is great to work with: A true team player and an asset to any organization.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>Jonathan Alan Bernia</h3>
+              <span>Healthcare Business Expert | Innovative &amp; Strategic Leader | People Coaching &amp; New Business Development | Marketing, Sales &amp; Channel Partners Management</span>
+              <span class="relationship">September 11, 2021 · worked with Lukas on the same team</span>
+            </header>
+            <blockquote>Let me say that Lukas was a very important contact/person during my year in Medartis. He is a very perceptive and recepting person for business, has this kind of quickly understanding of different markets reality that makes him be very important in the ideas, collaboration and supporting to develop them, despite of the differences of our markets (LATAM-Europe). This is a not common skill that is so important for Global Development Managers that I admire from him. I also would like to add that he has a great openness to listen to people and has willingness to grow good business Ideas. Last, but not least, I consider him a very committed person, pleasant and with a lot of good energy that makes a pleasure to work with. I would definetely recommend him and hope we could have another opportunity to collaborate.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>David Ebanks</h3>
+              <span>Regional Sales Manager at Arthrex</span>
+              <span class="relationship">January 18, 2021 · worked with Lukas but on different teams</span>
+            </header>
+            <blockquote>I have worked with Lukas over the past 4 and a half years. Over this time he has created many new solutions for our sales and marketing teams and is always able to pull in support and input from other markets around the world to make them a success. He takes time to understand the needs of each market and the team within to provide tailored content. Lukas understands the bigger picture – he is very transparent and open with his ideas and strategies for the benefit of the wider team. His hard work ethic ensures that projects are completed to a high level and in good time. His education material is extremely thorough and Lukas is meticulous with his work. Lukas is easy to communicate with and also quick to respond and support where necessary. I can highly recommend Lukas as he is a pleasure to work with both from a business and personal perspective.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>Rebekka Ellenrieder</h3>
+              <span>Chief Marketing &amp; Education Officer I Business Development &amp; Internationalisation I Digital Marketing I Turnaround I Board of Directors</span>
+              <span class="relationship">January 17, 2021 · managed Lukas directly</span>
+            </header>
+            <blockquote>When Lukas gets his hand on a challenge you end up feeling sorry for the challenge. He is able to learn fast like a lizard, analyze the situation in a very short time based on hard facts, market and direct customer inputs. Combined with his very tenacious, intelligent and strategic thinking he has a capacity to develop solutions for product development, sales and marketing as well as education. Lukas stood out as an all-rounder and solution-oriented team player, with a broad knowledge in technology and market understanding in the orthopedic market. Lukas knows very well how to challenge each level to re-think matters and improve the work continuously. He has a high sense of perfectionism for content and design. His work was spot on and needed hardly any review. Since day one I loved to work with Lukas and was very happy and proud to have him in my team. Not only in business but also in other life situations, Lukas was always there to help or support. I can only recommend Lukas as a colleague, team member or business leader.</blockquote>
+          </article>
+          <article class="reference-card" style="display:none">
+            <header>
+              <h3>Prof. Dr. Dr. Victor Valderrabano</h3>
+              <span>Chairman, SWISS ORTHO CENTER / Professor University of Basel</span>
+              <span class="relationship">December 10, 2020 · client</span>
+            </header>
+            <blockquote>Mr. Lukas Regniet is a highly competent, hard working, and motivated MedTech business person. He has not only an extensive knowledge of Orthopaedics &amp; Biomechanics, especially Foot and Ankle surgery, but also an excellent understanding of the entire medical device business field (market analysis, development strategy, marketing, sales strategy, education). As company, co-worker, or partner, you can always rely on Lukas Regniet. His words count and his support is always tremendous. We have organized and conducted many Foot and Ankle Orthopaedics workshops around the world. Lukas Regniet is a high level-professional personality, in all aspects. I highly recommend him.</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="downloads" class="section section-blue">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="downloads-title">Downloads</h2>
+        </header>
+        <div class="downloads-grid" data-slot="downloads">
+          <article class="download-card">
+            <img src="612bc454-abd0-4601-9492-db25e5e766f3.png" alt="CV preview image" loading="lazy">
+            <h3>CV (preview image)</h3>
+            <p class="text-muted">Available on request.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-blue">
+      <div class="container">
+        <header class="section-header">
+          <h2 data-slot="contact-title">Contact</h2>
+          <p class="section-subtitle" data-slot="contact-subtitle">Let’s build the next growth chapter.</p>
+        </header>
+        <div class="contact-card">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="contact-cta">
+                <h3>Direct Contact</h3>
+                <p><a href="mailto:lukas.regniet@medartis.com">lukas.regniet@medartis.com</a></p>
+                <p><a href="tel:+41797363909">+41 79 736 39 09</a></p>
+                <div class="d-flex flex-wrap gap-3">
+                  <a class="btn btn-light" href="mailto:lukas.regniet@medartis.com">
+                    <i class="bi bi-envelope"></i> <span data-i18n="cta.email">E-Mail</span>
+                  </a>
+                  <a class="btn btn-outline-light" href="https://www.linkedin.com/in/lukasregniet" target="_blank" rel="noopener">
+                    <i class="bi bi-linkedin"></i> <span data-i18n="cta.linkedin">LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <form class="contact-form" action="mailto:lukas.regniet@medartis.com" method="post" enctype="text/plain">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Your Email</label>
+                  <input class="form-control" type="email" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button class="btn btn-primary w-100" type="submit">
+                  <i class="bi bi-send"></i> <span data-i18n="cta.send">Send</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer py-4">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <div>
-        <span class="me-2">
-          © <span id="year"></span> Lukas Regniet
-        </span>
-        <span class="muted">
-          Press <span class="kbd">/</span> to quick search
-        </span>
-      </div>
-
-      <div class="d-flex gap-2">
-        <button class="btn btn-sm btn-outline-dark"
-                id="toggleTheme"
-                type="button">
-          <i class="bi bi-moon"></i> Toggle Theme
-        </button>
+  <footer class="site-footer">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+      <span>© <span id="year"></span> Lukas Regniet</span>
+      <div class="d-flex gap-3">
+        <a href="#top">Back to top</a>
+        <a href="mailto:lukas.regniet@medartis.com">E-Mail</a>
+        <a href="https://www.linkedin.com/in/lukasregniet" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </footer>
 
-  <!-- Vendor JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Lukas Regniet",
-    "jobTitle": "Head of Global Marketing Services & Digital Solutions",
-    "worksFor": {"@type": "Organization","name": "Medartis AG"},
-    "url": "https://lukasregniet.com",
-    "sameAs": ["https://www.linkedin.com/in/lukas-regniet/"],
-    "knowsAbout": ["Digital Marketing","MedTech","Healthcare Innovation","Strategic Leadership","Surgeon Education","Digital Transformation"],
-    "description": "Strategic marketing leader with 11+ years in MedTech, driving healthcare innovation through digital transformation, surgeon education, and cross-functional team leadership.",
-    "address": {"@type": "PostalAddress","addressLocality": "Basel","addressCountry": "Switzerland"}
-  }
-  </script>
-
-  <!-- ==== DATA inline (original exact content) ==== -->
-  <script>
-  window.DATA = {"profile":{"name":"Lukas Regniet","title":"Head of Global Marketing & Digital Solutions | MedTech Marketing Leader | Surgeon Education & Digital Transformation | Driving Innovation in Orthopedics","location":"Basel, Switzerland","about":"Strategic marketing leader passionate about advancing patient outcomes through innovation, digital transformation, and surgeon education in MedTech.\nWith over 11 years of international experience in orthopedic marketing, I combine clinical understanding with commercial strategy to build impactful brands and digital experiences. I have led global cross-functional teams to deliver major digital initiatives — including the relaunch of Medartis.com, the eIFU platform, and the creation of surgeon-focused education formats such as webinars, interviews and over 30 surgical technique videos and cadaver but also live surgery, filmed and edited together with my colleague Alexander Zibold in collaboration with leading international KOLs. (Please find some highlights below)\nI’m driven by curiosity, collaboration, and the belief that technology and education can truly empower healthcare professionals and improve patient care worldwide.","top_skills":["Strategic Marketing Leadership","Digital Transformation","Cross-functional Team Leadership","Medical Device Marketing","Digital Content & Education Strategy"]},"experience":[{"company":"Medartis AG","position":"Head of Global Marketing Service and Digital Solutions","employment_type":"Full-time","dates":"Sep 2023 - Present · 2 yrs 2 mos","location":"Basel, Basel, Switzerland · On-site","responsibilities":["Led a global digital transformation program, managing 4 direct reports and a total team of 9 cross-regional marketing professionals to redefine Medartis’ customer engagement strategy through the relaunch of the corporate website, the implementation of a compliant eIFU platform, and the launch of the first Medartis ONE App – fully connected to the website backend to ensure seamless global content management across EMEA, the US, and APAC.","Drove global product launches for upper and lower extremities by shaping differentiated value propositions with Product Management, Medical Affairs, and KOLs, and by steering end-to-end go-to-market strategies (messaging, sales enablement, training).","Managed global marketing and digital budgets, optimizing resources to maximize ROI and strategic alignment."],"key_results":["Accelerated digital adoption among sales representatives and customers worldwide by providing 24/7 access to product education and marketing materials through the new website and the Medartis ONE App.","Strengthened Medartis’ digital brand presence across all regions through consistent global messaging.","Delivered measurable ROI through improved campaign performance and efficient budget allocation."],"skills":["Leadership","Digital Marketing Analytics","Product Marketing","Digitale Strategie","Marketing Strategy"]},{"company":"Medartis AG","position":"Group Manager Digital Marketing and Analytics","employment_type":"Full-time","dates":"Mar 2021 - Sep 2023 · 2 yrs 7 mos","location":"Basel, Basel, Switzerland · On-site","responsibilities":["Led and organized a global marketing team of 10 experts (all direct reports) across key areas including social media marketing, translation and documentation, 3D development, web development, and print marketing.","Transformed the backend of global Medartis website and implemented a new IT infrastructure to create a customer-focused digital service ecosystem that generated measurable data and insights to support global sales and marketing decisions.","Developed and introduced a new campaign framework centered on customer-specific and sales-focused journeys, significantly improving communication and collaboration between subsidiaries and cross-functional business units such as Sales, Product Management, and Medical Affairs."],"key_results":["Achieved +25% revenue growth in 2021 driven by improved campaign performance and global alignment.","Established a scalable digital marketing structure that enhanced lead generation, analytics, and overall marketing efficiency.","Strengthened global collaboration and information flow between subsidiaries, creating a unified brand and data-driven marketing approach."],"skills":["Digital Transformation","Cross-functional Team Leadership","Social Media Marketing","Product Launch Planning"]},{"company":"Medartis AG","position":"Field Marketing Manager Lower Extremity","employment_type":"Full-time","dates":"Apr 2020 - Mar 2021 · 1 yr","location":"Basel, Basel, Switzerland · Hybrid","responsibilities":["Implemented strategic, country-specific dashboards for the Foot & Ankle business to generate deeper market insights and help affiliates identify cross-selling opportunities.","Adapted the marketing strategy during the COVID-19 pandemic by introducing a digital content framework for the Foot & Ankle portfolio, including more than 10 interactive international webinars with Key Opinion Leaders (KOLs).","Conducted comprehensive market research to understand customer needs, market dynamics, and competitive trends, influencing data-driven decision-making and strategic prioritization."],"key_results":["Drove +30% sales growth for the Foot & Ankle portfolio in 2020 by enabling affiliates to act on data-driven cross-selling insights.","Enhanced customer engagement and brand visibility through 10+ international webinars and digital education initiatives.","Strengthened market understanding across regions, leading to more targeted strategic decisions and improved sales efficiency."],"skills":["Foot & Ankle","Orthopedic foot surgery","Field marketing","KOL Management"]},{"company":"Medartis AG","position":"International Education Manager Foot & Ankle","dates":"Oct 2017 - Apr 2020 · 2 yrs 7 mos","location":"Basel, Basel, Switzerland","responsibilities":["Conceptually developed and implemented an internationally standardized Foot & Ankle training framework used to train and qualify more than 150 new sales employees across 9 subsidiaries over a 3-year period.","Designed and integrated a global concept for more than 10 Surgical Centers of Excellence to strengthen networking among surgical experts and enhance brand visibility in key markets.","Conceptualized, organized, and executed over 100 Foot & Ankle educational programs and workshops in collaboration with renowned international Key Opinion Leaders (KOLs) in more than 15 countries worldwide.","Promoted the global Foot & Ankle business by driving clinical education initiatives, ensuring consistent brand communication, and fostering long-term surgeon engagement.","Created and produced a wide range of educational videos and digital training materials for Foot & Ankle procedures (see features and links above), supporting global training consistency and knowledge sharing."],"key_results":["Established an internationally recognized education framework that significantly improved sales training quality and clinical brand awareness.","Built a global network of surgical experts and KOLs, increasing Medartis’ reputation and visibility in the Foot & Ankle segment.","Delivered 100+ high-impact educational programs that directly supported market growth and product adoption across regions."]},{"company":"Medartis AG","position":"Education Manager","dates":"Oct 2014 - Oct 2017 · 3 yrs 1 mo","location":"Basel, Basel, Switzerland","responsibilities":["Implemented and customized an internationally applied Learning Management System (LMS) covering orthopedic products of the upper and lower extremities, used by approximately 200 sales employees across 9 subsidiaries worldwide.","Created and produced sophisticated interactive digital education materials to enhance the professional development of sales representatives, driving higher engagement, product understanding, and sales effectiveness.","Developed and implemented Medartis’ first international social media strategy to strengthen the company’s digital presence, global reach, and customer engagement in alignment with corporate communication goals.","Collaborated with Product Management, Sales, and Medical Affairs to ensure consistent educational content and cross-functional alignment between clinical and commercial priorities."],"key_results":["Increased sales efficiency and target achievement through improved training accessibility and content quality.","Launched a scalable LMS framework that became the global standard for Medartis’ education programs.","Strengthened the company’s digital brand visibility and surgeon engagement through a unified social media approach."]},{"company":"Medisana AG","position":"Key Account Manager Sport & Health","dates":"Aug 2013 - Sep 2014 · 1 yr 2 mos","responsibilities":["Led the establishment of a new nationwide distribution network across Germany for the MIO Alpha and other sport health products.","Acquired and managed over 200 new retail and e-commerce accounts within the first year, ensuring strong market penetration and customer loyalty.","Developed innovative Point-of-Sale (POS) concepts for sport and health products to increase visibility and sales conversion.","Managed key account relationships and coordinated marketing activities to support product launches and brand positioning."],"key_results":["Built Medisana’s initial presence in the sports and wearable health technology market.","Drove significant account growth and revenue expansion during the first year of distribution.","Strengthened long-term relationships with key retailers and established scalable sales frameworks for future product lines."],"skills":["Key Account Management","Customer Acquisition"]},{"company":"Medisana AG","position":"Assistant Sales Manager Performance Sport","employment_type":"Full-time","dates":"Apr 2013 - Aug 2013 · 5 mos","responsibilities":["Created comprehensive training and sales presentations to support product launches and strengthen key account relationships.","Conducted product training sessions for key accounts, distributors, and internal sales teams to improve product knowledge and sales performance.","Organized national sales exhibitions and sport events to enhance brand visibility and customer engagement.","Developed a structured distribution concept to expand market presence and improve sales channel efficiency."],"key_results":["Improved product knowledge and sales confidence among key account partners.","Contributed to the successful execution of multiple national events and trade shows.","Supported the establishment of a consistent brand presence and sales training framework within the organization."],"skills":["Presentation Skills","Digital Health"]}],"education":[{"institution":"Deutsche Sporthochschule Köln","degree":"Master of Science (M.S.)","field":"Sports Technolgy","dates":"2010 - 2012","thesis":"Impact of footwear and surface to touchdown kinematics in overground running"},{"institution":"Deutsche Sporthochschule Köln","degree":"Bachelor of Arts (B.A.)","field":"Sport Outdoor and Education","dates":"Sep 2007 - Jul 2010"},{"institution":"Mariengymnasium"}],"references":[{"name":"Yannick Aister","relation":"1st degree connection","title":"Web Developer | Driving Global Digital Transformation","date":"October 20, 2025","relation_detail":"reported directly to Lukas","text":"I had the privilege of working under Lukas’ leadership during my time as a Web Developer, and it was one of the most inspiring professional experiences I’ve had. Lukas has an exceptional ability to see the bigger picture while staying deeply involved in the details that make a digital project succeed. Lukas drove several major initiatives that truly transformed the company’s digital presence — including the complete relaunch of the corporate website and the launch of the Medartis ONE app. He approaches every project with vision, structure, and an impressive understanding of both technology and digital marketing. What always impressed me most was his broad knowledge across disciplines — from web technologies to marketing automation, UX, and analytics. He consistently connected these areas into cohesive strategies that pushed the company forward. He’s a true digital all-rounder with vision and integrity, and I’m very grateful for the time I got to work with him."},{"name":"Eduard Lorenz","relation":"1st degree connection","title":"Designing Clarity in MedTech – Creative Leader with a Passion for Turning Ideas into Visual Solutions","date":"October 19, 2025","relation_detail":"reported directly to Lukas","text":"I had the pleasure of working under Lukas‘ leadership, and it was an inspiring experience from day one. Lukas combines deep technical and anatomical understanding with an empathetic, people-first leadership style that makes collaboration both productive and genuinely enjoyable. He played a key role in shaping Medartis’ digital transformation — leading the complete relaunch of the company’s website and orchestrating Medartis ONE, the first true Medartis app, which he guided from concept to launch. His ability to connect innovation, technology, and medical insight is rare, and he consistently turns complex ideas into clear, user-focused solutions. Lukas knows the Microsoft ecosystem inside out — SharePoint, Lists, Team Planner, automation, Jira, and beyond — and uses it to bring structure, flow, and efficiency to every process. What stands out most, though, is his leadership: fair, transparent, and constructive, always encouraging open dialogue and shared ownership. He’s not only a forward-thinking innovator and strong communicator but also an educator and connector who genuinely values knowledge sharing and teamwork. Lukas is one of those leaders who elevate both projects and people — and someone I truly enjoyed working with."},{"name":"Harald Wetzel","relation":"1st degree connection","title":"Data Warehousing | BI | Analytics / SAP®","date":"October 15, 2025","relation_detail":"worked with Lukas but on different teams","text":"I had the pleasure of working with Lukas for more than two years, during which we jointly took care of the company’s CRM system — even though this was not our original area of expertise. Lukas successfully led a team of more than eight people and always brought a high level of commitment, motivation, and positive energy to every challenge. He has an outstanding understanding of the company, its products, people, and processes, and he always managed to connect the dots between them. Collaborating with him was truly a pleasure. Losing such a dedicated and knowledgeable colleague is a real loss for the company — and for me personally as well."}]};
-  </script>
-
-  <!-- ==== Experience renderer (Bootstrap collapse, 1 Details-Button, kein doppelter Line) ==== -->
-  <script>
-  (function renderExperience(){
-    const $  = (s,r=document)=>r.querySelector(s);
-    const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
-    const data = window.DATA && Array.isArray(window.DATA.experience)? window.DATA.experience : [];
-    const wrap = $('#experience .timeline');
-    if(!wrap) return;
-    wrap.innerHTML = '';
-
-    data.forEach((job,idx)=>{
-      const id = `job${idx}`;
-      const item = document.createElement('div');
-      item.className = 't-item mb-4';
-      item.innerHTML = `
-        <div class="t-dot" aria-hidden="true"></div>
-        <div class="card p-4 hover-raise">
-          <div class="d-flex justify-content-between flex-wrap gap-2">
-            <div>
-              <h5 class="mb-1">${job.company} — ${job.position}${job.dates?` <span class='muted'>(${job.dates})</span>`:''}</h5>
-              <div class="muted">${[job.location, job.employment_type].filter(Boolean).join(' · ')}</div>
-            </div>
-            <div class="text-end">
-              <button class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="${id}"><i class="bi bi-caret-down" aria-hidden="true"></i> Details</button>
-            </div>
-          </div>
-          <div id="${id}" class="collapse mt-3">
-            ${job.responsibilities? `<div class='fw-semibold mb-2'>Responsibilities</div><ul>${job.responsibilities.map(r=>`<li>${r}</li>`).join('')}</ul>`:''}
-            ${job.key_results? `<hr class='my-3'><div class='fw-semibold mb-2'>Key Results</div><ul>${job.key_results.map(r=>`<li>${r}</li>`).join('')}</ul>`:''}
-            ${job.skills? `<div class='mt-2 d-flex flex-wrap gap-2'>${job.skills.map(s=>`<span class='pill'>${s}</span>`).join('')}</div>`:''}
-          </div>
-        </div>`;
-      wrap.appendChild(item);
-    });
-  })();
-  </script>
-
-  <!-- ==== Vimeo 5s Loop mit Soft-Fade (robust, guarded) ==== -->
-  <script>
-  (function initVimeoLoop(){
-    if (window.__hasVimeoLoop) return; // Guard gegen doppelte Initialisierung
-    window.__hasVimeoLoop = true;
-
-    const VIDEO_ID = '1129683666';
-    const IFRAME_ID = 'heroVimeo';
-    const START_AT = 7;        // Sekunden
-    const SEGMENT = 5;         // Länge
-    const FADE_DURATION = 0.6; // s
-    const FADE_LEAD_IN = 0.5;  // s vor Segmentende
-
-    function onReady(fn){
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
-      else fn();
-    }
-    function waitForIframe(id, timeoutMs=6000){
-      return new Promise((resolve, reject)=>{
-        const t0 = performance.now();
-        (function poll(){
-          const el = document.getElementById(id);
-          if (el) return resolve(el);
-          if (performance.now()-t0 > timeoutMs) return reject(new Error('Iframe not found: #' + id));
-          requestAnimationFrame(poll);
-        })();
-      });
-    }
-    function ensureVimeoApi(){
-      return new Promise((resolve, reject)=>{
-        if (window.Vimeo && typeof window.Vimeo.Player === 'function') return resolve();
-        const s = document.createElement('script');
-        s.src = 'https://player.vimeo.com/api/player.js';
-        s.async = true;
-        s.onload = ()=>resolve();
-        s.onerror = ()=>reject(new Error('Failed to load Vimeo API'));
-        document.head.appendChild(s);
-      });
-    }
-    function createFadeOverlay(iframe){
-      const container = iframe.parentElement;
-      if (!container) return null;
-      container.style.position = 'relative';
-      const overlay = document.createElement('div');
-      Object.assign(overlay.style, {
-        position:'absolute', inset:'0', pointerEvents:'none',
-        opacity:'0', transition:`opacity ${FADE_DURATION}s ease`,
-        background: getComputedStyle(document.documentElement).getPropertyValue('--bs-body-bg') || '#fff',
-        zIndex: 1
-      });
-      container.appendChild(overlay);
-      // Theme-Change nachziehen
-      const mo = new MutationObserver(()=>{
-        overlay.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bs-body-bg') || '#fff';
-      });
-      mo.observe(document.documentElement, {attributes:true, attributeFilter:['data-bs-theme']});
-      return overlay;
-    }
-
-    async function setup(){
-      try{
-        const iframe = await waitForIframe(IFRAME_ID);
-
-        // Sanity: Player-URL sicherstellen
-        if (!/player\.vimeo\.com\/video\/\d+/.test(iframe.src)) {
-          iframe.src = `https://player.vimeo.com/video/${VIDEO_ID}?background=1&autoplay=1&muted=1&controls=0&loop=0&byline=0&title=0&portrait=0&playsinline=1&autopause=0`;
+  <script id="page-data" type="application/json">
+    {
+      "meta": {
+        "version": "1.5",
+        "generated_at": "2025-10-27",
+        "language": "en"
+      },
+      "ui": {
+        "language_switcher": {
+          "default": "en",
+          "available": [
+            "en",
+            "de"
+          ]
         }
-
-        await ensureVimeoApi();
-        const player = new Vimeo.Player(iframe);
-
-        await player.setLoop(false).catch(()=>{});
-        await player.setMuted(true).catch(()=>{});
-        const overlay = createFadeOverlay(iframe);
-
-        const duration = await player.getDuration().catch(()=>null);
-        const start = Math.min(START_AT, (duration||START_AT+SEGMENT) - 0.1);
-
-        await player.setCurrentTime(Math.max(0, start)).catch(()=>{});
-        await player.play().catch(()=>{ /* Autoplay könnte blockiert sein – wird beim 1. Klick starten */ });
-
-        let fading = false;
-        player.on('timeupdate', (e)=>{
-          const t = e.seconds || 0;
-          const rel = (t - start);
-          if (rel >= SEGMENT - FADE_LEAD_IN && !fading && overlay){
-            fading = true; overlay.style.opacity = '1';
+      },
+      "assets": {
+        "images": {
+          "profile": "lukas_regniet_profile_pic.jpg",
+          "logos": {
+            "medartis": "medartis_logo.jpeg",
+            "medisana": "medisana_ag_logo.jpeg",
+            "medi": "medi_logo_placeholder.png",
+            "atos_orthoparc": "ATOS logo.jpeg",
+            "sporthochschule": "Sportchschule_Icon.jpg",
+            "mariengymnasium": "Mariengymnasium_Icon.jpg"
+          },
+          "icons": {
+            "leadership_trust": "Trust_icon.png",
+            "leadership_safety": "Safty_Icon.png",
+            "leadership_growth": "Growth_Icon.png"
+          },
+          "preview": {
+            "cv_preview": "612bc454-abd0-4601-9492-db25e5e766f3.png"
           }
-          if (rel >= SEGMENT){
-            player.setCurrentTime(start).then(()=>{
-              if (overlay) overlay.style.opacity = '0';
-              fading = false;
-            }).catch(()=>{});
+        }
+      },
+      "layout": {
+        "hero": {
+          "type": "split",
+          "image_left": false,
+          "header": "Where Strategy, Creativity, and Execution Drive Healthcare Innovation.",
+          "subheader": "Digital marketing leader with 11+ years in MedTech — empowering healthcare professionals through strategy and innovation.",
+          "video_position": "right",
+          "loop_video_right": true,
+          "left": {
+            "component": "header_block",
+            "headline": "Where Strategy, Creativity, and Execution Drive Healthcare Innovation.",
+            "subheadline": "Digital marketing leader with 11+ years in MedTech — empowering healthcare professionals through strategy and innovation."
+          },
+          "right": {
+            "component": "video_embed",
+            "position": "right",
+            "loop": true,
+            "muted": true,
+            "autoplay": true,
+            "url": "https://vimeo.com/1129683666?share=copy&fl=sv&fe=ci"
           }
-        });
-
-        // Falls pausiert (Autopause etc.), erneut starten
-        player.on('pause', async ()=>{ try{ await player.play(); }catch(e){} });
-      } catch(e){
-        console.error('[VimeoLoop] init failed:', e);
+        }
+      },
+      "sections": [
+        {
+          "id": "about_and_skills",
+          "title": "About & Top Skills",
+          "layout": {
+            "columns": 3,
+            "ratio": [
+              1,
+              1.5,
+              1
+            ]
+          },
+          "columns": [
+            {
+              "component": "profile_picture",
+              "src": "@images.profile",
+              "alt": "Portrait of Lukas Regniet",
+              "shape": "circle"
+            },
+            {
+              "component": "about",
+              "title": "About",
+              "text": [
+                "Strategic marketing leader passionate about advancing patient outcomes through innovation, digital transformation, and surgeon education in MedTech.",
+                "With over 11 years of international experience in orthopedic marketing, I combine clinical understanding with commercial strategy to build impactful brands and digital experiences. I have led global cross-functional teams to deliver major digital initiatives — including the relaunch of Medartis.com, the eIFU platform, and the creation of surgeon-focused education formats such as webinars, interviews and over 30 surgical technique videos and cadaver but also live surgery, filmed and edited.",
+                "I’m driven by curiosity, collaboration, and the belief that technology and education can truly empower healthcare professionals and improve patient care worldwide."
+              ]
+            },
+            {
+              "component": "skills",
+              "title": "Top Skills",
+              "items": [
+                "Strategic Marketing Leadership",
+                "Digital Transformation",
+                "Cross-functional Team Leadership",
+                "Medical Device Marketing",
+                "Digital Content & Education Strategy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "professional_experience",
+          "title": "Professional Experience",
+          "items": [
+            {
+              "company": "Medartis AG",
+              "logo": "@images.logos.medartis",
+              "role": "Head of Global Marketing Service and Digital Solutions",
+              "location": "Basel, Basel, Switzerland",
+              "work_mode": "On-site",
+              "employment_type": "Full-time",
+              "dates": "Sep 2023 - Present · 2 yrs 2 mos",
+              "responsibilities": [
+                "Led a global digital transformation program, managing 4 direct reports and a total team of 9 cross-regional marketing professionals to redefine Medartis’ customer engagement strategy through the relaunch of the corporate website, the implementation of a compliant eIFU platform, and the launch of the first Medartis ONE App – fully connected to the website backend to ensure seamless global content management across EMEA, the US, and APAC.",
+                "Drove global product launches for upper and lower extremities by shaping differentiated value propositions with Product Management, Medical Affairs, and KOLs, and by steering end-to-end go-to-market strategies (messaging, sales enablement, training).",
+                "Managed global marketing and digital budgets, optimizing resources to maximize ROI and strategic alignment."
+              ],
+              "key_results": [
+                "Accelerated digital adoption among sales representatives and customers worldwide by providing 24/7 access to product education and marketing materials through the new website and the Medartis ONE App.",
+                "Strengthened Medartis’ digital brand presence across all regions through consistent global messaging.",
+                "Delivered measurable ROI through improved campaign performance and efficient budget allocation."
+              ],
+              "skills": [
+                "Leadership",
+                "Digital Marketing Analytics",
+                "Product Marketing",
+                "Digitale Strategie",
+                "Marketing Strategy"
+              ]
+            },
+            {
+              "company": "Medartis AG",
+              "logo": "@images.logos.medartis",
+              "role": "Group Manager Digital Marketing and Analytics",
+              "location": "Basel, Basel, Switzerland",
+              "work_mode": "On-site",
+              "employment_type": "Full-time",
+              "dates": "Mar 2021 - Sep 2023 · 2 yrs 7 mos",
+              "responsibilities": [
+                "Led and organized a global marketing team of 10 experts (all direct reports) across key areas including social media marketing, translation and documentation, 3D development, web development, and print marketing.",
+                "Transformed the backend of global Medartis website and implemented a new IT infrastructure to create a customer-focused digital service ecosystem that generated measurable data and insights to support global sales and marketing decisions.",
+                "Developed and introduced a new campaign framework centered on customer-specific and sales-focused journeys, significantly improving communication and collaboration between subsidiaries and cross-functional business units such as Sales, Product Management, and Medical Affairs."
+              ],
+              "key_results": [
+                "Achieved +25% revenue growth in 2021 driven by improved campaign performance and global alignment.",
+                "Established a scalable digital marketing structure that enhanced lead generation, analytics, and overall marketing efficiency.",
+                "Strengthened global collaboration and information flow between subsidiaries, creating a unified brand and data-driven marketing approach."
+              ],
+              "skills": [
+                "Digital Transformation",
+                "Cross-functional Team Leadership",
+                "Social Media Marketing",
+                "Product Launch Planning"
+              ]
+            },
+            {
+              "company": "Medartis AG",
+              "logo": "@images.logos.medartis",
+              "role": "Field Marketing Manager Lower Extremity",
+              "location": "Basel, Basel, Switzerland",
+              "work_mode": "Hybrid",
+              "employment_type": "Full-time",
+              "dates": "Apr 2020 - Mar 2021 · 1 yr",
+              "responsibilities": [
+                "Implemented strategic, country-specific dashboards for the Foot & Ankle business to generate deeper market insights and help affiliates identify cross-selling opportunities.",
+                "Adapted the marketing strategy during the COVID-19 pandemic by introducing a digital content framework for the Foot & Ankle portfolio, including more than 10 interactive international webinars with Key Opinion Leaders (KOLs).",
+                "Conducted comprehensive market research to understand customer needs, market dynamics, and competitive trends, influencing data-driven decision-making and strategic prioritization."
+              ],
+              "key_results": [
+                "Drove +30% sales growth for the Foot & Ankle portfolio in 2020 by enabling affiliates to act on data-driven cross-selling insights.",
+                "Enhanced customer engagement and brand visibility through 10+ international webinars and digital education initiatives.",
+                "Strengthened market understanding across regions, leading to more targeted strategic decisions and improved sales efficiency."
+              ],
+              "skills": [
+                "Foot & Ankle",
+                "Orthopedic foot surgery",
+                "Field marketing",
+                "KOL Management"
+              ]
+            },
+            {
+              "company": "Medartis AG",
+              "logo": "@images.logos.medartis",
+              "role": "International Education Manager Foot & Ankle",
+              "location": "Basel, Basel, Switzerland",
+              "dates": "Oct 2017 - Apr 2020 · 2 yrs 7 mos",
+              "responsibilities": [
+                "Conceptually developed and implemented an internationally standardized Foot & Ankle training framework used to train and qualify more than 150 new sales employees across 9 subsidiaries over a 3-year period.",
+                "Designed and integrated a global concept for more than 10 Surgical Centers of Excellence to strengthen networking among surgical experts and enhance brand visibility in key markets.",
+                "Conceptualized, organized, and executed over 100 Foot & Ankle educational programs and workshops in collaboration with renowned international Key Opinion Leaders (KOLs) in more than 15 countries worldwide.",
+                "Promoted the global Foot & Ankle business by driving clinical education initiatives, ensuring consistent brand communication, and fostering long-term surgeon engagement.",
+                "Created and produced a wide range of educational videos and digital training materials for Foot & Ankle procedures, supporting global training consistency and knowledge sharing."
+              ],
+              "key_results": [
+                "Established an internationally recognized education framework that significantly improved sales training quality and clinical brand awareness.",
+                "Built a global network of surgical experts and KOLs, increasing Medartis’ reputation and visibility in the Foot & Ankle segment.",
+                "Delivered 100+ high-impact educational programs that directly supported market growth and product adoption across regions."
+              ]
+            },
+            {
+              "company": "Medartis AG",
+              "logo": "@images.logos.medartis",
+              "role": "Education Manager",
+              "location": "Basel, Basel, Switzerland",
+              "dates": "Oct 2014 - Oct 2017 · 3 yrs 1 mo",
+              "responsibilities": [
+                "Implemented and customized an internationally applied Learning Management System (LMS) covering orthopedic products of the upper and lower extremities, used by approximately 200 sales employees across 9 subsidiaries worldwide.",
+                "Created and produced sophisticated interactive digital education materials to enhance the professional development of sales representatives, driving higher engagement, product understanding, and sales effectiveness.",
+                "Developed and implemented Medartis’ first international social media strategy to strengthen the company’s digital presence, global reach, and customer engagement in alignment with corporate communication goals.",
+                "Collaborated with Product Management, Sales, and Medical Affairs to ensure consistent educational content and cross-functional alignment between clinical and commercial priorities."
+              ],
+              "key_results": [
+                "Increased sales efficiency and target achievement through improved training accessibility and content quality.",
+                "Launched a scalable LMS framework that became the global standard for Medartis’ education programs.",
+                "Strengthened the company’s digital brand visibility and surgeon engagement through a unified social media approach."
+              ]
+            },
+            {
+              "company": "Medisana AG",
+              "logo": "@images.logos.medisana",
+              "role": "Key Account Manager Sport & Health",
+              "dates": "Aug 2013 - Sep 2014 · 1 yr 2 mos",
+              "responsibilities": [
+                "Led the establishment of a new nationwide distribution network across Germany for the MIO Alpha and other sport health products.",
+                "Acquired and managed over 200 new retail and e-commerce accounts within the first year, ensuring strong market penetration and customer loyalty.",
+                "Developed innovative Point-of-Sale (POS) concepts for sport and health products to increase visibility and sales conversion.",
+                "Managed key account relationships and coordinated marketing activities to support product launches and brand positioning."
+              ],
+              "key_results": [
+                "Built Medisana’s initial presence in the sports and wearable health technology market.",
+                "Drove significant account growth and revenue expansion during the first year of distribution.",
+                "Strengthened long-term relationships with key retailers and established scalable sales frameworks for future product lines."
+              ],
+              "skills": [
+                "Key Account Management",
+                "Customer Acquisition"
+              ]
+            },
+            {
+              "company": "Medisana AG",
+              "logo": "@images.logos.medisana",
+              "role": "Assistant Sales Manager Performance Sport",
+              "employment_type": "Full-time",
+              "dates": "Apr 2013 - Aug 2013 · 5 mos",
+              "responsibilities": [
+                "Created comprehensive training and sales presentations to support product launches and strengthen key account relationships.",
+                "Conducted product training sessions for key accounts, distributors, and internal sales teams to improve product knowledge and sales performance.",
+                "Organized national sales exhibitions and sport events to enhance brand visibility and customer engagement.",
+                "Developed a structured distribution concept to expand market presence and improve sales channel efficiency."
+              ],
+              "key_results": [
+                "Improved product knowledge and sales confidence among key account partners.",
+                "Contributed to the successful execution of multiple national events and trade shows.",
+                "Supported the establishment of a consistent brand presence and sales training framework within the organization."
+              ],
+              "skills": [
+                "Presentation Skills",
+                "Digital Health"
+              ]
+            },
+            {
+              "company": "ATOS Orthoparc Klinik",
+              "logo": "@images.logos.atos_orthoparc",
+              "role": "Surgical Assistant",
+              "location": "Cologne, Germany",
+              "dates": "May 2011 - Aug 2012",
+              "responsibilities": [
+                "Surgery assistant for total knee and hip replacements for Prof. Dr. med. Joachim Schmidt.",
+                "Learning how to behave in a surgical environment."
+              ]
+            },
+            {
+              "company": "medi",
+              "logo": "@images.logos.medi",
+              "note": "Details to be added (no content provided)."
+            }
+          ]
+        },
+        {
+          "id": "key_projects",
+          "title": "Key Projects",
+          "type": "video_gallery",
+          "layout": {
+            "columns": 4
+          },
+          "items": [
+            {
+              "title": "Website Launch Keynote",
+              "platform": "vimeo",
+              "url": "https://vimeo.com/1129683666?share=copy&fl=sv&fe=ci",
+              "thumbnail": "",
+              "description": ""
+            },
+            {
+              "title": "Trimalleolar Ankle Fracture",
+              "platform": "vimeo",
+              "url": "https://vimeo.com/646887886",
+              "thumbnail": "",
+              "description": ""
+            },
+            {
+              "title": "Fusion of the MTP 1 Joint",
+              "platform": "vimeo",
+              "url": "https://vimeo.com/566586826",
+              "thumbnail": "",
+              "description": ""
+            },
+            {
+              "title": "Treatment of a complex Distal Radius Fracture",
+              "platform": "vimeo",
+              "url": "https://vimeo.com/1024786690",
+              "thumbnail": "",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "id": "leadership_philosophy",
+          "title": "Leadership Philosophy",
+          "layout": {
+            "columns": 3,
+            "equal_width_percent": 33
+          },
+          "sections": [
+            {
+              "title": "Trust, Empowerment & Accountability",
+              "icon": "@images.icons.leadership_trust",
+              "text": "I believe in leading through trust, empowerment, and accountability — enabling experts to own their work and make decisions with confidence. My role as a leader is to provide vision and support, not control, creating the space for people to perform at their best."
+            },
+            {
+              "title": "Psychological Safety & Open Dialogue",
+              "icon": "@images.icons.leadership_safety",
+              "text": "I foster a culture of psychological safety and open dialogue — where every voice is heard and ideas can challenge the status quo. This mindset fuels innovation, strengthens collaboration, and builds teams that take shared responsibility for success."
+            },
+            {
+              "title": "People Development & Structured 1:1s",
+              "icon": "@images.icons.leadership_growth",
+              "text": "I see people development as a core leadership duty. Through structured 1:1 meetings and clear alignment on goals, I help individuals grow their skills and careers — driving both personal fulfillment and long-term organizational success."
+            }
+          ]
+        },
+        {
+          "id": "education",
+          "title": "Education",
+          "type": "composite",
+          "groups": [
+            {
+              "group_title": "Education",
+              "items": [
+                {
+                  "institution": "Deutsche Sporthochschule Köln",
+                  "logo": "@images.logos.sporthochschule",
+                  "degree": "Master of Science (M.S.), Sports Technology",
+                  "dates": "2010 - 2012",
+                  "thesis": "Impact of footwear and surface to touchdown kinematics in overground running"
+                },
+                {
+                  "institution": "Deutsche Sporthochschule Köln",
+                  "logo": "@images.logos.sporthochschule",
+                  "degree": "Bachelor of Arts (B.A.), Sport Outdoor and Education",
+                  "dates": "Sep 2007 - Jul 2010"
+                },
+                {
+                  "institution": "Mariengymnasium",
+                  "logo": "@images.logos.mariengymnasium",
+                  "degree": "A-Level",
+                  "dates": "Sep 1994 - Jul 2006"
+                }
+              ]
+            },
+            {
+              "group_title": "Publication",
+              "items": [
+                {
+                  "title": "The effect of shoes, surface conditions and sex on leg geometry at touchdown in habitually shod runners",
+                  "authors": "S. Willwacher, L. Regniet, K. M. Fischer, K. D. Oberländer & G.-P. Brüggemann",
+                  "journal": "Journal of Footwear Science",
+                  "volume_issue_pages_year": "Volume 6, Issue 3, pp. 129-138, 2014"
+                }
+              ]
+            },
+            {
+              "group_title": "Awards",
+              "items": [
+                {
+                  "title": "Best student in annual examination of 2010 B.A. Sport Outdoor and Education",
+                  "issuer": "Germany Sports University of Cologne",
+                  "date": "Jul 2010"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "publications",
+          "title": "Publication",
+          "items": [
+            {
+              "title": "The effect of shoes, surface conditions and sex on leg geometry at touchdown in habitually shod runners",
+              "authors": "S. Willwacher, L. Regniet, K. M. Fischer, K. D. Oberländer & G.-P. Brüggemann",
+              "journal": "Journal of Footwear Science",
+              "volume_issue_pages_year": "Volume 6, Issue 3, pp. 129-138, 2014"
+            }
+          ]
+        },
+        {
+          "id": "awards",
+          "title": "Awards",
+          "items": [
+            {
+              "title": "Best student in annual examination of 2010 B.A. Sport Outdoor and Education",
+              "issuer": "Germany Sports University of Cologne",
+              "date": "Jul 2010"
+            }
+          ]
+        },
+        {
+          "id": "references",
+          "title": "References & Recommendations",
+          "items": [
+            {
+              "name": "Yannick Aister",
+              "title": "Web Developer | Driving Global Digital Transformation",
+              "date": "October 20, 2025",
+              "relationship": "reported directly to Lukas",
+              "text": "I had the privilege of working under Lukas’ leadership during my time as a Web Developer, and it was one of the most inspiring professional experiences I’ve had. Lukas has an exceptional ability to see the bigger picture while staying deeply involved in the details that make a digital project succeed. Lukas drove several major initiatives that truly transformed the company’s digital presence — including the complete relaunch of the corporate website and the launch of the Medartis ONE app. He approaches every project with vision, structure, and an impressive understanding of both technology and digital marketing. What always impressed me most was his broad knowledge across disciplines — from web technologies to marketing automation, UX, and analytics. He consistently connected these areas into cohesive strategies that pushed the company forward. He’s a true digital all-rounder with vision and integrity, and I’m very grateful for the time I got to work with him."
+            },
+            {
+              "name": "Eduard Lorenz",
+              "title": "Designing Clarity in MedTech – Creative Leader with a Passion for Turning Ideas into Visual Solutions",
+              "date": "October 19, 2025",
+              "relationship": "reported directly to Lukas",
+              "text": "I had the pleasure of working under Lukas‘ leadership, and it was an inspiring experience from day one. Lukas combines deep technical and anatomical understanding with an empathetic, people-first leadership style that makes collaboration both productive and genuinely enjoyable. He played a key role in shaping Medartis’ digital transformation — leading the complete relaunch of the company’s website and orchestrating Medartis ONE, the first true Medartis app, which he guided from concept to launch. His ability to connect innovation, technology, and medical insight is rare, and he consistently turns complex ideas into clear, user-focused solutions. Lukas knows the Microsoft ecosystem inside out — SharePoint, Lists, Team Planner, automation, Jira, and beyond — and uses it to bring structure, flow, and efficiency to every process. What stands out most, though, is his leadership: fair, transparent, and constructive, always encouraging open dialogue and shared ownership. He’s not only a forward-thinking innovator and strong communicator but also an educator and connector who genuinely values knowledge sharing and teamwork. Lukas ist einer jener Führungskräfte, die Projekte und Menschen gleichermaßen weiterbringen."
+            },
+            {
+              "name": "Harald Wetzel",
+              "title": "Data Warehousing | BI | Analytics / SAP®",
+              "date": "October 15, 2025",
+              "relationship": "worked with Lukas but on different teams",
+              "text": "I had the pleasure of working with Lukas for more than two years, during which we jointly took care of the company’s CRM system — even though this was not our original area of expertise. Lukas successfully led a team of more than eight people and always brought a high level of commitment, motivation, and positive energy to every challenge. He has an outstanding understanding of the company, its products, people, and processes, and he always managed to connect the dots between them. Collaborating with him was truly a pleasure. Losing such a dedicated and knowledgeable colleague is a real loss for the company — and for me personally as well."
+            },
+            {
+              "name": "Ceyda Ilisulu",
+              "title": "International Sales Lead EMEA at Medartis",
+              "date": "October 1, 2025",
+              "relationship": "worked with Lukas but on different teams",
+              "text": "I had the privilege of working with Lukas, and I was always impressed by his agility, determination, and passion for every task he takes on. He combines reliability and dedication with a strong drive to achieve results, which makes him someone you can always count on. What truly sets him apart is his ability to balance being a supportive colleague with being an inspiring leader. He genuinely cares about his team, fosters collaboration, and motivates others to grow alongside him. Lukas is not only a great manager but also a team player who consistently adds value, and I can wholeheartedly recommend him as an asset to any organization."
+            },
+            {
+              "name": "Adriane Lang",
+              "title": "Marketing & Product Management Professional | Turning Innovation into Market Impact",
+              "date": "September 23, 2025",
+              "relationship": "worked with Lukas on the same team",
+              "text": "I had the great pleasure of working with Lukas, and I was always impressed by his energy and drive. He is someone who doesn’t just do his job well, but constantly looks for ways to make things better. Whether it’s improving processes, staying on top of the latest technologies, or challenging the status quo, Lukas always brings fresh ideas and solutions. What I really appreciate is that he never limits his perspective to his own department, he consistently looks at the bigger picture and thinks about how to move the whole company forward. On top of that, Lukas is great to work with: A true team player and an asset to any organization."
+            },
+            {
+              "name": "Jonathan Alan Bernia",
+              "title": "Healthcare Business Expert | Innovative & Strategic Leader | People Coaching & New Business Development | Marketing, Sales & Channel Partners Management",
+              "date": "September 11, 2021",
+              "relationship": "worked with Lukas on the same team",
+              "text": "Let me say that Lukas was a very important contact/person during my year in Medartis. He is a very perceptive and recepting person for business, has this kind of quickly understanding of different markets reality that makes him be very important in the ideas, collaboration and supporting to develop them, despite of the differences of our markets (LATAM-Europe). This is a not common skill that is so important for Global Development Managers that I admire from him. I also would like to add that he has a great openness to listen to people and has willingness to grow good business Ideas. Last, but not least, I consider him a very committed person, pleasant and with a lot of good energy that makes a pleasure to work with. I would definetely recommend him and hope we could have another opportunity to collaborate."
+            },
+            {
+              "name": "David Ebanks",
+              "title": "Regional Sales Manager at Arthrex",
+              "date": "January 18, 2021",
+              "relationship": "worked with Lukas but on different teams",
+              "text": "I have worked with Lukas over the past 4 and a half years. Over this time he has created many new solutions for our sales and marketing teams and is always able to pull in support and input from other markets around the world to make them a success. He takes time to understand the needs of each market and the team within to provide tailored content. Lukas understands the bigger picture – he is very transparent and open with his ideas and strategies for the benefit of the wider team. His hard work ethic ensures that projects are completed to a high level and in good time. His education material is extremely thorough and Lukas is meticulous with his work. Lukas is easy to communicate with and also quick to respond and support where necessary. I can highly recommend Lukas as he is a pleasure to work with both from a business and personal perspective."
+            },
+            {
+              "name": "Rebekka Ellenrieder",
+              "title": "Chief Marketing & Education Officer I Business Development & Internationalisation I Digital Marketing I Turnaround I Board of Directors",
+              "date": "January 17, 2021",
+              "relationship": "managed Lukas directly",
+              "text": "When Lukas gets his hand on a challenge you end up feeling sorry for the challenge. He is able to learn fast like a lizard, analyze the situation in a very short time based on hard facts, market and direct customer inputs. Combined with his very tenacious, intelligent and strategic thinking he has a capacity to develop solutions for product development, sales and marketing as well as education. Lukas stood out as an all-rounder and solution-oriented team player, with a broad knowledge in technology and market understanding in the orthopedic market. Lukas knows very well how to challenge each level to re-think matters and improve the work continuously. He has a high sense of perfectionism for content and design. His work was spot on and needed hardly any review. Since day one I loved to work with Lukas and was very happy and proud to have him in my team. Not only in business but also in other life situations, Lukas was always there to help or support. I highly recommend him."
+            },
+            {
+              "name": "Prof. Dr. Dr. Victor Valderrabano",
+              "title": "Chairman, SWISS ORTHO CENTER / Professor University of Basel",
+              "date": "December 10, 2020",
+              "relationship": "client",
+              "text": "Mr. Lukas Regniet is a highly competent, hard working, and motivated MedTech business person. He has not only an extensive knowledge of Orthopaedics & Biomechanics, especially Foot and Ankle surgery, but also an excellent understanding of the entire medical device business field (market analysis, development strategy, marketing, sales strategy, education). As company, co-worker, or partner, you can always rely on Lukas Regniet. His words count and his support is always tremendous. We have organized and conducted many Foot and Ankle Orthopaedics workshops around the world. Lukas Regniet is a high level-professional personality, in all aspects. I highly recommend him."
+            }
+          ]
+        },
+        {
+          "id": "downloads",
+          "title": "Downloads",
+          "items": [
+            {
+              "type": "cv",
+              "label": "CV (preview image)",
+              "preview_src": "@images.preview.cv_preview",
+              "download_url": ""
+            }
+          ]
+        },
+        {
+          "id": "contact",
+          "title": "Contact",
+          "items": []
+        }
+      ],
+      "i18n": {
+        "default": "en",
+        "languages": [
+          "en",
+          "de"
+        ],
+        "strings": {
+          "de": {
+            "layout.hero.left.header_block.headline": "Wo Strategie, Kreativität und Umsetzung den Gesundheitssektor voranbringen.",
+            "layout.hero.left.header_block.subheadline": "Digitaler Marketing Leader mit 11+ Jahren Erfahrung in MedTech — stärkt Fachkräfte im Gesundheitswesen durch Strategie und Innovation.",
+            "sections.about_and_skills.title": "Über mich & Top-Skills",
+            "sections.about_and_skills.columns[1].title": "Über mich",
+            "sections.about_and_skills.columns[1].text[0]": "Strategischer Marketing-Leader, der Patientenresultate durch Innovation, digitale Transformation und Aus-/Weiterbildung im MedTech-Bereich voranbringt.",
+            "sections.about_and_skills.columns[1].text[1]": "Mit über 11 Jahren internationaler Erfahrung in der orthopädischen Vermarktung verbinde ich klinisches Verständnis mit kommerzieller Strategie, um wirkungsvolle Marken und digitale Erlebnisse zu schaffen. Ich habe funktionsübergreifende, globale Teams geführt und wesentliche Digitalinitiativen umgesetzt — darunter den Relaunch von Medartis.com, die eIFU-Plattform sowie die Entwicklung von formatspezifischen Fortbildungsinhalten wie Webinare, Interviews und über 30 Surgical-Technique-Videos sowie Cadaver- und Live-OPs (Konzeption, Dreh und Schnitt).",
+            "sections.about_and_skills.columns[1].text[2]": "Neugier, Zusammenarbeit und die Überzeugung, dass Technologie und Education Fachkräfte wirklich befähigen und die Patientenversorgung weltweit verbessern können, treiben mich an.",
+            "sections.about_and_skills.columns[2].title": "Top-Skills",
+            "skill.Strategic Marketing Leadership": "Strategische Marketingführung",
+            "skill.Digital Transformation": "Digitale Transformation",
+            "skill.Cross-functional Team Leadership": "Führung funktionsübergreifender Teams",
+            "skill.Medical Device Marketing": "Medizinprodukte-Marketing",
+            "skill.Digital Content & Education Strategy": "Digitale Content- & Education-Strategie",
+            "sections.professional_experience.title": "Berufserfahrung",
+            "sections.key_projects.title": "Schlüsselprojekte",
+            "sections.leadership_philosophy.title": "Führungsphilosophie",
+            "sections.education.title": "Ausbildung",
+            "education.group.education": "Ausbildung",
+            "education.group.publication": "Publikation",
+            "education.group.awards": "Auszeichnungen",
+            "sections.references.title": "Referenzen & Empfehlungen",
+            "sections.downloads.title": "Downloads",
+            "sections.contact.title": "Kontakt"
+          }
+        }
       }
     }
-    onReady(setup);
-  })();
   </script>
 
-  <!-- Your JS (keine Änderung) -->
   <script src="app.js"></script>
-
-  <!-- Perf + footer-year -->
-  <script>
-    window.addEventListener('load', () => {
-      const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
-      if ('performance' in window) {
-        const nav = performance.getEntriesByType('navigation')[0];
-        if (nav) console.log('Page load time:', nav.loadEventEnd - nav.loadEventStart, 'ms');
-      }
-    });
-  </script>
 </body>
 </html>
