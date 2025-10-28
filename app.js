@@ -91,14 +91,43 @@ const getTranslation = (path, fallback = '') => {
   return sanitize(value);
 };
 
-const translateSkill = (skill) => getTranslation(`skill.${skill}`, skill);
-
 const translateSectionTitle = (id, fallback) => getTranslation(`sections.${id}.title`, fallback);
 
-const translateHeroText = (key, fallback) => getTranslation(`layout.hero.left.header_block.${key}`, fallback);
+const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 
-const translateAboutText = (index, fallback) =>
-  getTranslation(`sections.about_and_skills.columns[1].text[${index}]`, fallback);
+const localizeValue = (source, key, fallback = undefined) => {
+  if (!source) return fallback;
+  const lang = state.currentLang || 'en';
+  if (lang && lang !== 'en') {
+    const langKey = `${key}_${lang}`;
+    if (hasOwn(source, langKey)) {
+      const value = source[langKey];
+      if (value !== undefined && value !== null) return value;
+    }
+  }
+  if (hasOwn(source, key)) {
+    const value = source[key];
+    if (value !== undefined && value !== null) return value;
+  }
+  return fallback;
+};
+
+const localizeArray = (source, key) => {
+  const value = localizeValue(source, key);
+  return Array.isArray(value) ? value : [];
+};
+
+const translateHeroText = (key, fallback) => {
+  const hero = at(state, ['data', 'layout', 'hero']) || {};
+  const headerBlock =
+    at(hero, ['left', 'header_block']) ||
+    at(hero, ['right', 'header_block']) ||
+    {};
+  const value =
+    localizeValue(hero, key) ??
+    localizeValue(headerBlock, key);
+  return sanitize(value ?? fallback);
+};
 
 const renderLanguageSwitcher = () => {
   const slot = $('[data-slot="language-switcher"]');
@@ -135,12 +164,14 @@ const renderHero = () => {
   const mediaEl = $('[data-slot="hero-video"]');
 
   const heroHeadline =
-    at(hero, ['header']) ||
-    at(hero, ['left', 'headline']) ||
+    localizeValue(hero, 'header') ??
+    localizeValue(at(hero, ['left']) || {}, 'headline') ??
+    localizeValue(at(hero, ['left', 'header_block']) || {}, 'headline') ??
     '';
   const heroSubheadline =
-    at(hero, ['subheader']) ||
-    at(hero, ['left', 'subheadline']) ||
+    localizeValue(hero, 'subheader') ??
+    localizeValue(at(hero, ['left']) || {}, 'subheadline') ??
+    localizeValue(at(hero, ['left', 'header_block']) || {}, 'subheadline') ??
     '';
 
   if (headlineEl) headlineEl.textContent = translateHeroText('headline', heroHeadline);
@@ -157,24 +188,31 @@ const renderHero = () => {
 
   if (mediaEl) {
     mediaEl.innerHTML = '';
-    const videoUrl =
-      at(hero, ['right', 'url']) ||
-      at(hero, ['video_url']) ||
+    const videoConfig =
+      at(hero, ['right', 'video']) ||
       at(hero, ['video']) ||
+      {};
+    const videoUrl =
+      localizeValue(videoConfig, 'url') ||
+      localizeValue(hero.right || {}, 'url') ||
+      at(hero, ['video_url']) ||
       '';
     const shouldLoop = Boolean(
-      at(hero, ['right', 'loop']) ??
+      localizeValue(videoConfig, 'loop') ??
+        localizeValue(hero.right || {}, 'loop') ??
         at(hero, ['loop_video_right']) ??
         at(hero, ['loop']) ??
         false
     );
     const shouldAutoplay = Boolean(
-      at(hero, ['right', 'autoplay']) ??
+      localizeValue(videoConfig, 'autoplay') ??
+        localizeValue(hero.right || {}, 'autoplay') ??
         at(hero, ['autoplay']) ??
         true
     );
     const shouldMute = Boolean(
-      at(hero, ['right', 'muted']) ??
+      localizeValue(videoConfig, 'muted') ??
+        localizeValue(hero.right || {}, 'muted') ??
         at(hero, ['muted']) ??
         true
     );
@@ -198,22 +236,21 @@ const renderHero = () => {
 
 const renderAboutAndSkills = () => {
   const slot = $('[data-slot="about-grid"]');
+  const skillsSlot = $('[data-slot="about-skills"]');
   const title = $('[data-slot="about-title"]');
-  const section = state.sections.about_and_skills;
+  const section =
+    state.sections.about ||
+    state.sections.about_and_skills;
   if (!slot || !section) return;
 
-  if (title) title.textContent = translateSectionTitle(section.id, section.title);
+  if (title) {
+    title.textContent = getTranslation('sections.about.title', 'About');
+  }
 
   slot.innerHTML = '';
-  const ratio = at(section, ['layout', 'ratio']);
-  if (Array.isArray(ratio) && ratio.length >= 3) {
-    const firstCombined =
-      (Number(ratio[0]) || 1) +
-      (Number(ratio[1]) || 1);
-    const template = `${firstCombined > 0 ? firstCombined : 2}fr ${Number(ratio[2]) > 0 ? Number(ratio[2]) : 1}fr`;
-    slot.style.gridTemplateColumns = template;
-  } else {
-    slot.style.gridTemplateColumns = 'minmax(0, 2fr) minmax(0, 1fr)';
+  if (skillsSlot) {
+    skillsSlot.innerHTML = '';
+    skillsSlot.style.display = '';
   }
 
   const columns = section.columns || [];
@@ -221,45 +258,54 @@ const renderAboutAndSkills = () => {
   const aboutCol = columns.find((col) => col && col.component === 'about');
   const skillsCol = columns.find((col) => col && col.component === 'skills');
 
-  const summaryCard = createEl('article', { className: 'about-card about-summary' });
-  const profileWrapper = createEl('div', { className: 'profile-wrapper' });
-  const profileSrc = profileCol && resolveAsset(profileCol.src, state.assets);
-  if (profileSrc) {
-    profileWrapper.appendChild(
-      createEl('img', {
-        attrs: {
-          src: profileSrc,
-          alt: sanitize((profileCol && profileCol.alt) || 'Portrait'),
-          loading: 'lazy'
-        }
-      })
-    );
+  let hasPhoto = false;
+  if (profileCol) {
+    const profileSrc = resolveAsset(profileCol.src, state.assets);
+    if (profileSrc) {
+      const photo = createEl('div', { className: 'about-photo' });
+      photo.appendChild(
+        createEl('img', {
+          attrs: {
+            src: profileSrc,
+            alt: sanitize(localizeValue(profileCol, 'alt', profileCol.alt || 'Portrait')),
+            loading: 'lazy'
+          }
+        })
+      );
+      slot.appendChild(photo);
+      hasPhoto = true;
+    }
   }
-  summaryCard.appendChild(profileWrapper);
 
-  const aboutBody = createEl('div', { className: 'about-body' });
-  const aboutTitle = getTranslation('sections.about_and_skills.columns[1].title', (aboutCol && aboutCol.title) || 'About');
-  aboutBody.appendChild(createEl('h3', { text: aboutTitle }));
-  const aboutText = (aboutCol && aboutCol.text) || [];
-  aboutText.forEach((paragraph, textIndex) => {
-    aboutBody.appendChild(createEl('p', { text: translateAboutText(textIndex, paragraph) }));
+  const aboutTextContainer = createEl('div', { className: 'about-text' });
+  const aboutText = localizeArray(aboutCol || {}, 'text');
+  aboutText.forEach((paragraph) => {
+    aboutTextContainer.appendChild(createEl('p', { text: sanitize(paragraph) }));
   });
+  slot.appendChild(aboutTextContainer);
+  slot.classList.toggle('single-column', !hasPhoto);
 
-  const skillsItems = (skillsCol && skillsCol.items) || [];
-  if (skillsItems.length) {
-    const list = createEl('div', { className: 'skill-list skill-list-inline' });
-    skillsItems.forEach((skill) => {
-      list.appendChild(createEl('span', { text: translateSkill(skill) }));
-    });
-    aboutBody.appendChild(list);
+  const skillsItems = localizeArray(skillsCol || {}, 'items');
+  if (skillsSlot) {
+    if (skillsItems.length) {
+      skillsItems.forEach((skill) => {
+        skillsSlot.appendChild(createEl('span', { text: sanitize(skill) }));
+      });
+    } else {
+      skillsSlot.style.display = 'none';
+    }
   }
-
-  summaryCard.appendChild(aboutBody);
-  slot.appendChild(summaryCard);
 };
 
 const buildMetaLine = (item) => {
-  const parts = [item.dates, item.location, item.work_mode, item.employment_type].map(sanitize).filter(Boolean);
+  const parts = [
+    localizeValue(item, 'dates'),
+    localizeValue(item, 'location'),
+    localizeValue(item, 'work_mode'),
+    localizeValue(item, 'employment_type')
+  ]
+    .map((value) => sanitize(value))
+    .filter(Boolean);
   return parts.join(' · ');
 };
 
@@ -278,7 +324,10 @@ const renderExperience = () => {
     const header = createEl('header');
     const row = createEl('div', { className: 'd-flex flex-wrap gap-3 align-items-start' });
     const textWrap = createEl('div', { className: 'flex-grow-1' });
-    textWrap.appendChild(createEl('h3', { text: `${sanitize(item.company)} — ${sanitize(item.role || '')}`.trim() }));
+    const company = sanitize(localizeValue(item, 'company', item.company || ''));
+    const role = sanitize(localizeValue(item, 'role', item.role || ''));
+    const titleParts = [company, role].filter(Boolean).join(' — ');
+    textWrap.appendChild(createEl('h3', { text: titleParts || company || role }));
     const meta = buildMetaLine(item);
     if (meta) textWrap.appendChild(createEl('div', { className: 'experience-meta', text: meta }));
     row.appendChild(textWrap);
@@ -286,31 +335,42 @@ const renderExperience = () => {
     const logoSrc = resolveAsset(item.logo, state.assets);
     if (logoSrc) {
       const logo = createEl('div', { className: 'experience-logo' });
-      logo.appendChild(createEl('img', { attrs: { src: logoSrc, alt: `${sanitize(item.company)} logo`, loading: 'lazy' } }));
+      logo.appendChild(
+        createEl('img', {
+          attrs: { src: logoSrc, alt: `${company} logo`.trim(), loading: 'lazy' }
+        })
+      );
       row.appendChild(logo);
     }
     header.appendChild(row);
     card.appendChild(header);
 
-    if (Array.isArray(item.skills) && item.skills.length) {
+    const localizedSkills = localizeArray(item, 'skills');
+    if (localizedSkills.length) {
       const skillRow = createEl('div', { className: 'pill-group' });
-      item.skills.forEach((skill) => skillRow.appendChild(createEl('span', { className: 'pill', text: translateSkill(skill) })));
+      localizedSkills.forEach((skill) =>
+        skillRow.appendChild(createEl('span', { className: 'pill', text: sanitize(skill) }))
+      );
       card.appendChild(skillRow);
     }
 
-    const responsibilities = item.responsibilities || [];
-    const keyResults = item.key_results || [];
+    const responsibilities = localizeArray(item, 'responsibilities');
+    const keyResults = localizeArray(item, 'key_results');
     if (responsibilities.length || keyResults.length) {
       const details = createEl('details');
       const summary = createEl('summary', {
-        html: '<i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>Details</span>'
+        html: `<i class="bi bi-caret-down-fill" aria-hidden="true"></i><span>${sanitize(
+          getTranslation('experience.details', 'Details')
+        )}</span>`
       });
       details.appendChild(summary);
       const wrapper = createEl('div', { className: 'details-list' });
 
       if (responsibilities.length) {
         const block = createEl('div');
-        block.appendChild(createEl('h4', { text: 'Responsibilities' }));
+        block.appendChild(
+          createEl('h4', { text: sanitize(getTranslation('experience.responsibilities', 'Responsibilities')) })
+        );
         const list = createEl('ul');
         responsibilities.forEach((line) => list.appendChild(createEl('li', { text: sanitize(line) })));
         block.appendChild(list);
@@ -319,7 +379,9 @@ const renderExperience = () => {
 
       if (keyResults.length) {
         const block = createEl('div');
-        block.appendChild(createEl('h4', { text: 'Key Results' }));
+        block.appendChild(
+          createEl('h4', { text: sanitize(getTranslation('experience.key_results', 'Key Results')) })
+        );
         const list = createEl('ul');
         keyResults.forEach((line) => list.appendChild(createEl('li', { text: sanitize(line) })));
         block.appendChild(list);
@@ -328,8 +390,10 @@ const renderExperience = () => {
 
       details.appendChild(wrapper);
       card.appendChild(details);
-    } else if (item.note) {
-      card.appendChild(createEl('p', { className: 'text-muted', text: sanitize(item.note) }));
+    } else if (item.note || localizeValue(item, 'note')) {
+      card.appendChild(
+        createEl('p', { className: 'text-muted', text: sanitize(localizeValue(item, 'note', item.note || '')) })
+      );
     }
 
     fragment.appendChild(card);
@@ -340,10 +404,6 @@ const renderExperience = () => {
   const expandBtn = $('[data-action="experience-expand"]');
   const collapseBtn = $('[data-action="experience-collapse"]');
   const details = $$('details', slot);
-
-  if (!hasOverflow && state.referencesExpanded) {
-    state.referencesExpanded = false;
-  }
 
   if (expandBtn) {
     expandBtn.innerHTML = `<i class="bi bi-arrows-expand"></i> ${getTranslation('experience.expand', 'Expand all')}`;
@@ -367,27 +427,34 @@ const renderProjects = () => {
   (section.items || []).forEach((item) => {
     const card = createEl('article', { className: 'project-card' });
     const media = createEl('div', { className: 'project-media' });
-    const vimeoId = getVimeoId(item.url);
+    const url = localizeValue(item, 'url', item.url);
+    const vimeoId = getVimeoId(url);
     if (vimeoId) {
       const iframe = createEl('iframe', {
         attrs: {
           src: `https://player.vimeo.com/video/${vimeoId}?h=0&title=0&byline=0&portrait=0`,
           allow: 'autoplay; fullscreen; picture-in-picture',
           loading: 'lazy',
-          title: sanitize(item.title || 'Project'),
+          title: sanitize(localizeValue(item, 'title', item.title || 'Project')),
           frameborder: '0'
         }
       });
       media.appendChild(iframe);
     } else {
-      media.appendChild(createEl('div', { className: 'project-placeholder', text: 'Video unavailable' }));
+      media.appendChild(
+        createEl('div', {
+          className: 'project-placeholder',
+          text: getTranslation('projects.video_unavailable', 'Video unavailable')
+        })
+      );
     }
     card.appendChild(media);
 
     const body = createEl('div', { className: 'project-body' });
-    body.appendChild(createEl('h3', { text: sanitize(item.title || 'Project') }));
-    if (item.description) {
-      body.appendChild(createEl('p', { text: sanitize(item.description) }));
+    body.appendChild(createEl('h3', { text: sanitize(localizeValue(item, 'title', item.title || 'Project')) }));
+    const description = localizeValue(item, 'description', item.description);
+    if (description) {
+      body.appendChild(createEl('p', { text: sanitize(description) }));
     }
     card.appendChild(body);
     fragment.appendChild(card);
@@ -405,21 +472,28 @@ const renderLeadership = () => {
 
   slot.innerHTML = '';
   const fragment = document.createDocumentFragment();
-  (section.sections || []).forEach((item, index) => {
+  (section.sections || []).forEach((item) => {
     const card = createEl('article', { className: 'leadership-card' });
     const iconSrc = resolveAsset(item.icon, state.assets);
     if (iconSrc) {
-      card.appendChild(createEl('img', { attrs: { src: iconSrc, alt: sanitize(item.title || 'Leadership icon'), loading: 'lazy' } }));
+      card.appendChild(
+        createEl('img', {
+          attrs: {
+            src: iconSrc,
+            alt: sanitize(localizeValue(item, 'title', item.title || 'Leadership icon')),
+            loading: 'lazy'
+          }
+        })
+      );
     }
-    const basePath = ['trust', 'safety', 'growth'][index] || index;
     card.appendChild(
       createEl('h3', {
-        text: getTranslation(`leadership.${basePath}.title`, item.title || '')
+        text: sanitize(localizeValue(item, 'title', item.title || ''))
       })
     );
     card.appendChild(
       createEl('p', {
-        text: getTranslation(`leadership.${basePath}.text`, item.text || '')
+        text: sanitize(localizeValue(item, 'text', item.text || ''))
       })
     );
     fragment.appendChild(card);
@@ -439,29 +513,34 @@ const renderEducation = () => {
 
   if (!groups || !groups.length) {
     const fragment = document.createDocumentFragment();
-    (section.items || []).forEach((item, index) => {
+    (section.items || []).forEach((item) => {
       const card = createEl('article', { className: 'education-card' });
       const logo = resolveAsset(item.logo, state.assets);
       if (logo) {
-        card.appendChild(createEl('img', { attrs: { src: logo, alt: sanitize(item.institution || 'Institution'), loading: 'lazy' } }));
+        card.appendChild(
+          createEl('img', {
+            attrs: {
+              src: logo,
+              alt: sanitize(localizeValue(item, 'institution', item.institution || 'Institution')),
+              loading: 'lazy'
+            }
+          })
+        );
       } else {
         card.appendChild(createEl('div'));
       }
       const body = createEl('div');
-      const degreeKey =
-        index === 0
-          ? 'education.DSHS.MS.degree'
-          : index === 1
-          ? 'education.DSHS.BA.degree'
-          : undefined;
-      body.appendChild(createEl('h3', { text: sanitize(item.institution || 'Institution') }));
-      if (item.degree) {
-        body.appendChild(
-          createEl('div', { className: 'details', text: getTranslation(degreeKey || '', item.degree) })
-        );
+      body.appendChild(
+        createEl('h3', { text: sanitize(localizeValue(item, 'institution', item.institution || 'Institution')) })
+      );
+      const degree = localizeValue(item, 'degree', item.degree);
+      if (degree) {
+        body.appendChild(createEl('div', { className: 'details', text: sanitize(degree) }));
       }
-      if (item.dates) body.appendChild(createEl('div', { className: 'details', text: sanitize(item.dates) }));
-      if (item.thesis) body.appendChild(createEl('div', { className: 'details', text: sanitize(item.thesis) }));
+      const dates = localizeValue(item, 'dates', item.dates);
+      if (dates) body.appendChild(createEl('div', { className: 'details', text: sanitize(dates) }));
+      const thesis = localizeValue(item, 'thesis', item.thesis);
+      if (thesis) body.appendChild(createEl('div', { className: 'details', text: sanitize(thesis) }));
       card.appendChild(body);
       fragment.appendChild(card);
     });
@@ -477,35 +556,43 @@ const renderEducation = () => {
     return;
   }
 
-  const educationGroup = groups.find((group) => (group.group_title || '').toLowerCase().includes('education')) || groups[0];
-  const publicationGroup = groups.find((group) => (group.group_title || '').toLowerCase().includes('publication'));
-  const awardsGroup = groups.find((group) => (group.group_title || '').toLowerCase().includes('award'));
+  const matchGroup = (group, keyword) =>
+    (String(localizeValue(group, 'group_title', group.group_title || '')).toLowerCase().includes(keyword));
+
+  const educationGroup = groups.find((group) => matchGroup(group, 'ausbildung') || matchGroup(group, 'education')) || groups[0];
+  const publicationGroup = groups.find((group) => matchGroup(group, 'publikation') || matchGroup(group, 'publication'));
+  const awardsGroup = groups.find((group) => matchGroup(group, 'auszeichnung') || matchGroup(group, 'award'));
 
   const fragment = document.createDocumentFragment();
   const educationItems = (educationGroup && educationGroup.items) || [];
-  educationItems.forEach((item, index) => {
+  educationItems.forEach((item) => {
     const card = createEl('article', { className: 'education-card' });
     const logo = resolveAsset(item.logo, state.assets);
     if (logo) {
-      card.appendChild(createEl('img', { attrs: { src: logo, alt: sanitize(item.institution || 'Institution'), loading: 'lazy' } }));
+      card.appendChild(
+        createEl('img', {
+          attrs: {
+            src: logo,
+            alt: sanitize(localizeValue(item, 'institution', item.institution || 'Institution')),
+            loading: 'lazy'
+          }
+        })
+      );
     } else {
       card.appendChild(createEl('div'));
     }
     const body = createEl('div');
-    const degreeKey =
-      index === 0
-        ? 'education.DSHS.MS.degree'
-        : index === 1
-        ? 'education.DSHS.BA.degree'
-        : undefined;
-    body.appendChild(createEl('h3', { text: sanitize(item.institution || 'Institution') }));
-    if (item.degree) {
-      body.appendChild(
-        createEl('div', { className: 'details', text: getTranslation(degreeKey || '', item.degree) })
-      );
+    body.appendChild(
+      createEl('h3', { text: sanitize(localizeValue(item, 'institution', item.institution || 'Institution')) })
+    );
+    const degree = localizeValue(item, 'degree', item.degree);
+    if (degree) {
+      body.appendChild(createEl('div', { className: 'details', text: sanitize(degree) }));
     }
-    if (item.dates) body.appendChild(createEl('div', { className: 'details', text: sanitize(item.dates) }));
-    if (item.thesis) body.appendChild(createEl('div', { className: 'details', text: sanitize(item.thesis) }));
+    const dates = localizeValue(item, 'dates', item.dates);
+    if (dates) body.appendChild(createEl('div', { className: 'details', text: sanitize(dates) }));
+    const thesis = localizeValue(item, 'thesis', item.thesis);
+    if (thesis) body.appendChild(createEl('div', { className: 'details', text: sanitize(thesis) }));
     card.appendChild(body);
     fragment.appendChild(card);
   });
@@ -519,15 +606,21 @@ const renderPublicationGroup = (group) => {
   const slot = $('[data-slot="publications"]');
   const title = $('[data-slot="publications-title"]');
   if (!slot || !title) return;
-  const groupTitle = (group && (group.group_title || group.title)) || 'Publication';
-  title.textContent = getTranslation('education.group.publication', groupTitle);
+  const defaultTitle = (group && (group.group_title || group.title)) || 'Publication';
+  const localizedTitle = sanitize(localizeValue(group || {}, 'group_title', defaultTitle));
+  title.textContent = getTranslation('education.group.publication', localizedTitle || defaultTitle);
   slot.innerHTML = '';
   const items = (group && group.items) || [];
   items.forEach((item) => {
     const card = createEl('article', { className: 'publication-card' });
-    if (item.title) card.appendChild(createEl('h3', { text: sanitize(item.title) }));
-    if (item.authors) card.appendChild(createEl('p', { text: sanitize(item.authors) }));
-    if (item.journal) card.appendChild(createEl('p', { className: 'details', text: sanitize(item.journal) }));
+    const titleText = localizeValue(item, 'title', item.title);
+    if (titleText) card.appendChild(createEl('h3', { text: sanitize(titleText) }));
+    const authors = localizeValue(item, 'authors', item.authors);
+    if (authors) card.appendChild(createEl('p', { text: sanitize(authors) }));
+    const journal = localizeValue(item, 'journal', item.journal);
+    if (journal) card.appendChild(createEl('p', { className: 'details', text: sanitize(journal) }));
+    const citation = localizeValue(item, 'volume_issue_pages_year', item.volume_issue_pages_year);
+    if (citation) card.appendChild(createEl('p', { className: 'details', text: sanitize(citation) }));
     slot.appendChild(card);
   });
 };
@@ -536,15 +629,20 @@ const renderAwardsGroup = (group) => {
   const slot = $('[data-slot="awards"]');
   const title = $('[data-slot="awards-title"]');
   if (!slot || !title) return;
-  const groupTitle = (group && (group.group_title || group.title)) || 'Awards';
-  title.textContent = getTranslation('education.group.awards', groupTitle);
+  const defaultTitle = (group && (group.group_title || group.title)) || 'Awards';
+  const localizedTitle = sanitize(localizeValue(group || {}, 'group_title', defaultTitle));
+  title.textContent = getTranslation('education.group.awards', localizedTitle || defaultTitle);
   slot.innerHTML = '';
   const awardItems = (group && group.items) || [];
   awardItems.forEach((item) => {
     const card = createEl('article', { className: 'awards-card' });
-    card.appendChild(createEl('h3', { text: sanitize(item.title || 'Award') }));
-    if (item.issuer) card.appendChild(createEl('p', { text: sanitize(item.issuer) }));
-    if (item.date) card.appendChild(createEl('p', { className: 'details', text: sanitize(item.date) }));
+    card.appendChild(
+      createEl('h3', { text: sanitize(localizeValue(item, 'title', item.title || 'Award')) })
+    );
+    const issuer = localizeValue(item, 'issuer', item.issuer);
+    if (issuer) card.appendChild(createEl('p', { text: sanitize(issuer) }));
+    const date = localizeValue(item, 'date', item.date);
+    if (date) card.appendChild(createEl('p', { className: 'details', text: sanitize(date) }));
     slot.appendChild(card);
   });
 };
@@ -590,12 +688,18 @@ const renderReferences = () => {
 
     const header = createEl('header');
     header.appendChild(createEl('h3', { text: sanitize(item.name) }));
-    if (item.title) header.appendChild(createEl('span', { text: sanitize(item.title) }));
-    if (item.date) header.appendChild(createEl('span', { className: 'relationship', text: sanitize(item.date) }));
-    if (item.relationship) header.appendChild(createEl('span', { className: 'relationship', text: sanitize(item.relationship) }));
+    const titleText = localizeValue(item, 'title', item.title);
+    if (titleText) header.appendChild(createEl('span', { text: sanitize(titleText) }));
+    const date = localizeValue(item, 'date', item.date);
+    if (date) header.appendChild(createEl('span', { className: 'relationship', text: sanitize(date) }));
+    const relationship = localizeValue(item, 'relationship', item.relationship);
+    if (relationship) {
+      header.appendChild(createEl('span', { className: 'relationship', text: sanitize(relationship) }));
+    }
     card.appendChild(header);
 
-    if (item.text) card.appendChild(createEl('blockquote', { text: sanitize(item.text) }));
+    const text = localizeValue(item, 'text', item.text);
+    if (text) card.appendChild(createEl('blockquote', { text: sanitize(text) }));
 
     slot.appendChild(card);
   });
@@ -614,17 +718,35 @@ const renderDownloads = () => {
     const card = createEl('article', { className: 'download-card' });
     const preview = resolveAsset(item.preview_src, state.assets);
     if (preview) {
-      card.appendChild(createEl('img', { attrs: { src: preview, alt: sanitize(item.label || 'Download preview'), loading: 'lazy' } }));
+      card.appendChild(
+        createEl('img', {
+          attrs: {
+            src: preview,
+            alt: sanitize(localizeValue(item, 'label', item.label || 'Download preview')),
+            loading: 'lazy'
+          }
+        })
+      );
     }
-    if (item.label) {
-      card.appendChild(createEl('h3', { text: sanitize(item.label) }));
+    const label = localizeValue(item, 'label', item.label);
+    if (label) {
+      card.appendChild(createEl('h3', { text: sanitize(label) }));
     }
     if (item.download_url) {
       card.appendChild(
-        createEl('a', { className: 'btn btn-primary', text: 'Download', attrs: { href: item.download_url, download: '' } })
+        createEl('a', {
+          className: 'btn btn-primary',
+          text: getTranslation('downloads.cta', 'Download'),
+          attrs: { href: item.download_url, download: '' }
+        })
       );
     } else {
-      card.appendChild(createEl('p', { className: 'text-muted', text: 'Available on request.' }));
+      card.appendChild(
+        createEl('p', {
+          className: 'text-muted',
+          text: getTranslation('downloads.available_on_request', 'Available on request.')
+        })
+      );
     }
     slot.appendChild(card);
   });
@@ -633,6 +755,11 @@ const renderDownloads = () => {
 const updateNavLabels = () => {
   const anchors = $$('.nav-links a');
   anchors.forEach((anchor) => {
+    const navKey = anchor.getAttribute('data-nav');
+    if (navKey) {
+      anchor.textContent = getTranslation(`nav.${navKey}`, anchor.textContent);
+      return;
+    }
     const href = anchor.getAttribute('href');
     const id = href && href.charAt(0) === '#' ? href.slice(1) : '';
     if (!id) return;
@@ -758,6 +885,13 @@ document.addEventListener('DOMContentLoaded', () => {
       state.sections[section.id] = section;
     }
   });
+  if (state.sections.about_and_skills && !state.sections.about) {
+    state.sections.about = {
+      ...state.sections.about_and_skills,
+      id: 'about',
+      title: 'About'
+    };
+  }
   const defaultLang =
     at(data, ['ui', 'language_switcher', 'default']) ||
     at(data, ['meta', 'language']) ||
